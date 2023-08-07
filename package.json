@@ -1,12 +1,22 @@
 {
-  "name": "my-app",
+  "name": "movies",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "Oktora Kevin Arigi",
+    "email": "oktora.kevin.arigi@gmail.com"
+  },
+  "engines": {
+    "node": "^18.14.0",
+    "npm": "please-use-pnpm"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky install",
+    "lint:staged": "lint-staged"
   },
   "dependencies": {
     "@types/node": "20.4.8",
@@ -14,12 +24,21 @@
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.14",
     "eslint": "8.46.0",
-    "eslint-config-next": "13.4.12",
-    "next": "13.4.12",
+    "eslint-config-next": "13.4.13",
+    "next": "13.4.13",
     "postcss": "8.4.27",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "tailwindcss": "3.3.3",
     "typescript": "5.1.6"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.2.1",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-sonarjs": "^0.20.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3",
+    "prettier": "^3.0.1"
   }
 }
