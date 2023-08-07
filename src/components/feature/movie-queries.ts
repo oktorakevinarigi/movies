@@ -1,0 +1,280 @@
+import {
+  useQuery,
+  useInfiniteQuery,
+  type UseQueryOptions,
+  type InfiniteData,
+  type UseInfiniteQueryOptions,
+} from "@tanstack/react-query";
+
+import { FetcherArgs, cleanQuery, fetchBrowser, queryToString } from "@/utils";
+import { URL_API } from "@/constants";
+import {
+  movieResponseSchema,
+  movieDetailResponseSchema,
+  movieSearchResponseSchema,
+  movieGenresResponseSchema,
+  movieRecommendationsResponseSchema,
+  movieReviewsResponseSchema,
+} from "./movie-model";
+
+type MovieQuery = {
+  language: string;
+  page: string;
+  region: string;
+};
+type MovieDetailQuery = {
+  movie_id: string;
+  append_to_response: string;
+  language: string;
+};
+type MovieSearchQuery = {
+  query: string;
+  include_adult: boolean;
+  language: string;
+  primary_release_year: string;
+  page: string;
+  region: string;
+  year: string;
+};
+type MovieGenresQuery = { language: string };
+type MovieRecomendationsQuery = { movie_id: string };
+type MovieReviewsQuery = { movie_id: string };
+type MovieDiscoverQuery = {
+  language: string;
+  page: string;
+  with_genres: string;
+  sort_by: string;
+};
+
+export const MoviePopularKeys = {
+  all: ["MOVIE_POPULAR"],
+  lists: () => [...MoviePopularKeys.all, "LISTS"],
+  list: (query: MovieQuery) => [...MoviePopularKeys.lists(), cleanQuery(query)],
+};
+export const MovieUpcomingKeys = {
+  all: ["MOVIE_UPCOMING"],
+  lists: () => [...MovieUpcomingKeys.all, "LISTS"],
+  list: (query: MovieQuery) => [...MovieUpcomingKeys.lists(), cleanQuery(query)],
+};
+export const MovieKeys = {
+  all: ["MOVIE"],
+  lists: () => [...MovieKeys.all, "LISTS"],
+  list: (query: MovieQuery) => [...MovieKeys.lists(), cleanQuery(query)],
+  details: () => [...MovieKeys.all, "DETAIL"],
+  detail: (query: MovieDetailQuery) => [...MovieKeys.details(), cleanQuery(query)],
+  searchs: () => [...MovieKeys.all, "DETAIL"],
+  search: (query: MovieSearchQuery) => [...MovieKeys.searchs(), cleanQuery(query)],
+};
+
+export const MovieGenresKeys = {
+  all: ["MOVIE_GENRES"],
+  lists: () => [...MovieGenresKeys.all, "LISTS"],
+  list: (query: MovieGenresQuery) => [...MovieGenresKeys.lists(), cleanQuery(query)],
+};
+
+export const MovieRecommendationsKeys = {
+  all: ["MOVIE_RECOMMENDATIONS"],
+  lists: () => [...MovieRecommendationsKeys.all, "LISTS"],
+  list: (query: MovieRecomendationsQuery) => [
+    ...MovieRecommendationsKeys.lists(),
+    cleanQuery(query),
+  ],
+};
+
+export const MovieReviewsKeys = {
+  all: ["MOVIE_REVIEWS"],
+  lists: () => [...MovieReviewsKeys.all, "LISTS"],
+  list: (query: MovieReviewsQuery) => [...MovieReviewsKeys.lists(), cleanQuery(query)],
+};
+
+export const MovieDiscoverKeys = {
+  all: ["MOVIE_DISCOVER"],
+  infiniteLists: () => [...MovieDiscoverKeys.all, "INFINITE_LISTS"],
+  infiniteList: (query: MovieDiscoverQuery) => [
+    ...MovieDiscoverKeys.infiniteLists(),
+    cleanQuery(query),
+  ],
+};
+
+export const getMoviePopular = async ({ fetch, query }: FetcherArgs<MovieQuery>) => {
+  const response = await fetch.get(`${URL_API}/3/movie/popular${queryToString(query)}`, {
+    next: { revalidate: 60 },
+  });
+  return movieResponseSchema.parse(response);
+};
+export type IMoviePopularFn = Awaited<ReturnType<typeof getMoviePopular>>;
+export function useGetMoviePopular(query: MovieQuery, options?: UseQueryOptions<IMoviePopularFn>) {
+  return useQuery<IMoviePopularFn>(
+    MoviePopularKeys.list(query),
+    () => {
+      const fetch = fetchBrowser();
+      return getMoviePopular({ fetch, query });
+    },
+    options,
+  );
+}
+
+export const getMovieUpcoming = async ({ fetch, query }: FetcherArgs<MovieQuery>) => {
+  const response = await fetch.get(`${URL_API}/3/movie/upcoming${queryToString(query)}`, {
+    next: { revalidate: 60 },
+  });
+  return movieResponseSchema.parse(response);
+};
+export type IMovieUpcomingFn = Awaited<ReturnType<typeof getMovieUpcoming>>;
+export function useGetMovieUpcoming(
+  query: MovieQuery,
+  options?: UseQueryOptions<IMovieUpcomingFn>,
+) {
+  return useQuery<IMovieUpcomingFn>(
+    MovieUpcomingKeys.list(query),
+    () => {
+      const fetch = fetchBrowser();
+      return getMovieUpcoming({ fetch, query });
+    },
+    options,
+  );
+}
+
+export const getMovieDetail = async ({ fetch, query }: FetcherArgs<MovieDetailQuery>) => {
+  const { movie_id, ...rest } = query;
+  const response = await fetch.get(`${URL_API}/3/movie/${movie_id}${queryToString(rest)}`, {
+    next: { revalidate: 60 },
+  });
+  return movieDetailResponseSchema.parse(response);
+};
+export type IMovieDetailFn = Awaited<ReturnType<typeof getMovieDetail>>;
+export function useGetMovieDetail(
+  query: MovieDetailQuery,
+  options?: UseQueryOptions<IMovieDetailFn>,
+) {
+  return useQuery<IMovieDetailFn>(
+    MovieKeys.detail(query),
+    () => {
+      const fetch = fetchBrowser();
+      return getMovieDetail({ fetch, query });
+    },
+    options,
+  );
+}
+
+export const getMovieSearch = async ({ fetch, query }: FetcherArgs<MovieSearchQuery>) => {
+  const response = await fetch.get(`${URL_API}/3/search/movie${queryToString(query)}`);
+  return movieSearchResponseSchema.parse(response);
+};
+export type IMovieSearchFn = Awaited<ReturnType<typeof getMovieSearch>>;
+export function useGetMovieSearch(
+  query: MovieSearchQuery,
+  options?: UseQueryOptions<IMovieSearchFn>,
+) {
+  return useQuery<IMovieSearchFn>(
+    MovieKeys.search(query),
+    () => {
+      const fetch = fetchBrowser();
+      return getMovieSearch({ fetch, query });
+    },
+    options,
+  );
+}
+
+export const getMovieGenres = async ({ fetch, query }: FetcherArgs<MovieGenresQuery>) => {
+  const response = await fetch.get(`${URL_API}/3/genre/movie/list${queryToString(query)}`, {
+    next: { revalidate: 60 },
+  });
+  return movieGenresResponseSchema.parse(response);
+};
+export type IMovieGenresFn = Awaited<ReturnType<typeof getMovieGenres>>;
+export function useGetMovieGenres(
+  query: MovieGenresQuery,
+  options?: UseQueryOptions<IMovieGenresFn>,
+) {
+  return useQuery<IMovieGenresFn>(
+    MovieGenresKeys.list(query),
+    () => {
+      const fetch = fetchBrowser();
+      return getMovieGenres({ fetch, query });
+    },
+    options,
+  );
+}
+
+export const getMovieRecommedations = async ({
+  fetch,
+  query,
+}: FetcherArgs<MovieRecomendationsQuery>) => {
+  const response = await fetch.get(`${URL_API}/3/movie/${query.movie_id}/recommendations`, {
+    next: { revalidate: 60 },
+  });
+  return movieRecommendationsResponseSchema.parse(response);
+};
+export type IMovieRecommedationsFn = Awaited<ReturnType<typeof getMovieRecommedations>>;
+export function useGetMovieRecommendations(
+  query: MovieRecomendationsQuery,
+  options?: UseQueryOptions<IMovieRecommedationsFn>,
+) {
+  return useQuery<IMovieRecommedationsFn>(
+    MovieRecommendationsKeys.list(query),
+    () => {
+      const fetch = fetchBrowser();
+      return getMovieRecommedations({ fetch, query });
+    },
+    options,
+  );
+}
+
+export const getMovieReviews = async ({ fetch, query }: FetcherArgs<MovieReviewsQuery>) => {
+  const response = await fetch.get(`${URL_API}/3/movie/${query.movie_id}/reviews`, {
+    next: { revalidate: 60 },
+  });
+  return movieReviewsResponseSchema.parse(response);
+};
+export type IMovieReviewsFn = Awaited<ReturnType<typeof getMovieReviews>>;
+export function useGetMovieReviews(
+  query: MovieReviewsQuery,
+  options?: UseQueryOptions<IMovieReviewsFn>,
+) {
+  return useQuery<IMovieReviewsFn>(
+    MovieReviewsKeys.list(query),
+    () => {
+      const fetch = fetchBrowser();
+      return getMovieReviews({ fetch, query });
+    },
+    options,
+  );
+}
+
+export const getMovieDiscover = async ({ fetch, query }: FetcherArgs<MovieDiscoverQuery>) => {
+  const response = await fetch.get(`${URL_API}/3/discover/movie${queryToString(query)}`, {
+    next: { revalidate: 60 },
+  });
+  return movieSearchResponseSchema.parse(response);
+};
+export type IMovieDiscoverFn = Awaited<ReturnType<typeof getMovieDiscover>>;
+
+export type InfiniteMovieDiscoverFn = InfiniteData<IMovieDiscoverFn>;
+export function useGetInfiniteMovieDiscover(
+  query: MovieDiscoverQuery,
+  options?: UseInfiniteQueryOptions<IMovieDiscoverFn>,
+) {
+  return useInfiniteQuery<IMovieDiscoverFn>(
+    MovieDiscoverKeys.infiniteList(query),
+    async ({ pageParam = query.page }) => {
+      const fetch = fetchBrowser();
+      return getMovieDiscover({
+        fetch,
+        query: { ...query, page: pageParam || "1" },
+      });
+    },
+    {
+      select: options?.select as unknown as (
+        data: InfiniteMovieDiscoverFn,
+      ) => InfiniteData<IMovieDiscoverFn>,
+      getNextPageParam: lastPage => {
+        if (lastPage.results.length < 20) {
+          return undefined;
+        }
+        return lastPage.page + 1;
+      },
+      ...options,
+    },
+  );
+}

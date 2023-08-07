@@ -41,5 +41,8 @@
         ]
       }
     ]
+  },
+  "settings": {
+    "import/ignore": ["@tanstack/react-query"]
   }
 }
