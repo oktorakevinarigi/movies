@@ -30,7 +30,7 @@ export function ContentMovies() {
   }
 
   return (
-    <div className="flex flex-1 flex-col ">
+    <div className="flex flex-1 flex-col">
       <div className="flex flex-wrap justify-center gap-5 sm:justify-start">
         {getMovieDiscover.data?.pages
           .map(page => page.results ?? [])
