@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 
 import { getGenre } from "@/utils";
 import { Spinner } from "@/components/layouts";
-import { ULR_IMAGE } from "@/constants";
+import { ULR_IMAGE, API_KEY } from "@/constants";
 import { useGetInfiniteMovieDiscover, useGetMovieGenres } from "./movie-queries";
 import { Card } from "./card";
 
@@ -13,9 +13,10 @@ export function ContentMovies() {
   const genre = searchParams.get("genre");
   const sort = searchParams.get("sort");
 
-  const getMovieGenres = useGetMovieGenres({ language: "en" });
+  const getMovieGenres = useGetMovieGenres({ api_key: API_KEY, language: "en" });
   const getMovieDiscover = useGetInfiniteMovieDiscover(
     {
+      api_key: API_KEY,
       language: "",
       page: "1",
       sort_by: sort || "",

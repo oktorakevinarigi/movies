@@ -9,11 +9,11 @@ import {
   getBody,
 } from "./fetch";
 
-function getAuthorization(tokenName?: string) {
-  console.log(tokenName);
-  return {
-    authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZDU3MDFlNGFhZDliNzRiMmY2Zjk0MTk2OWQxNTYzZCIsInN1YiI6IjY0YTIzYmY2ZDQwMGYzMDBlYmZlNjIxOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.onf64C683ZIDbi4R8EW1PafgzW8_pBFUePoDJ5uaa6c`,
-  };
+function getAuthorization(tokenName: string) {
+  const result = null;
+  if (result && result[tokenName]) {
+    return { authorization: `Bearer ${result[tokenName]}` };
+  }
 }
 
 function handleOptions(options?: IOptions) {

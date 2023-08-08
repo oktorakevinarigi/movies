@@ -4,14 +4,14 @@ import dayjs from "dayjs";
 import Link from "next/link";
 
 import { getGenre } from "@/utils";
-import { ULR_IMAGE } from "@/constants";
+import { ULR_IMAGE, API_KEY } from "@/constants";
 import { Carousel } from "../user-interfaces";
 import { useGetMoviePopular, useGetMovieGenres } from "./movie-queries";
 
 export function Banner() {
-  const query = { language: "en-US", page: "1", region: "" };
+  const query = { api_key: API_KEY, language: "en-US", page: "1", region: "" };
   const getMoviePopular = useGetMoviePopular(query);
-  const getMovieGenres = useGetMovieGenres({ language: "en" });
+  const getMovieGenres = useGetMovieGenres({ api_key: API_KEY, language: "en" });
 
   return (
     <div className="my-8 hidden sm:block">

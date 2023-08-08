@@ -3,15 +3,15 @@ import { useParams } from "next/navigation";
 import dayjs from "dayjs";
 
 import { getGenre } from "@/utils";
-import { ULR_IMAGE } from "@/constants";
+import { ULR_IMAGE, API_KEY } from "@/constants";
 import { Card } from "./card";
 import { useGetMovieRecommendations, useGetMovieGenres } from "./movie-queries";
 
 export function Recommendation() {
   const router = useParams();
   const id = router.id as string;
-  const getMovieGenres = useGetMovieGenres({ language: "en" });
-  const getMovieRecommendations = useGetMovieRecommendations({ movie_id: id });
+  const getMovieGenres = useGetMovieGenres({ api_key: API_KEY, language: "en" });
+  const getMovieRecommendations = useGetMovieRecommendations({ api_key: API_KEY, movie_id: id });
 
   if (!getMovieRecommendations.data?.results.length) {
     return null;

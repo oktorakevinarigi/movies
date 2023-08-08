@@ -5,6 +5,8 @@ import Highlighter from "react-highlight-words";
 
 import { useDebounce } from "@/utils";
 import { IconSearch, IconSearchMovie } from "@/components/user-interfaces";
+import { API_KEY } from "@/constants";
+
 import { useGetMovieSearch } from "../feature/movie-queries";
 import { Spinner } from "./spinner";
 
@@ -15,6 +17,7 @@ export function Header() {
 
   const getMovieSearch = useGetMovieSearch(
     {
+      api_key: API_KEY,
       query: deb,
       include_adult: false,
       language: "en-US",

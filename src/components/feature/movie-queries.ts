@@ -17,16 +17,19 @@ import {
   movieReviewsResponseSchema,
 } from "./movie-model";
 
+type ApiKeyQuery = {
+  api_key: string;
+};
 type MovieQuery = {
   language: string;
   page: string;
   region: string;
-};
+} & ApiKeyQuery;
 type MovieDetailQuery = {
   movie_id: string;
   append_to_response: string;
   language: string;
-};
+} & ApiKeyQuery;
 type MovieSearchQuery = {
   query: string;
   include_adult: boolean;
@@ -35,16 +38,16 @@ type MovieSearchQuery = {
   page: string;
   region: string;
   year: string;
-};
-type MovieGenresQuery = { language: string };
-type MovieRecomendationsQuery = { movie_id: string };
-type MovieReviewsQuery = { movie_id: string };
+} & ApiKeyQuery;
+type MovieGenresQuery = { language: string } & ApiKeyQuery;
+type MovieRecomendationsQuery = { movie_id: string } & ApiKeyQuery;
+type MovieReviewsQuery = { movie_id: string } & ApiKeyQuery;
 type MovieDiscoverQuery = {
   language: string;
   page: string;
   with_genres: string;
   sort_by: string;
-};
+} & ApiKeyQuery;
 
 export const MoviePopularKeys = {
   all: ["MOVIE_POPULAR"],
@@ -250,9 +253,13 @@ export const getMovieRecommedations = async ({
   fetch,
   query,
 }: FetcherArgs<MovieRecomendationsQuery>) => {
-  const response = await fetch.get(`${URL_API}/3/movie/${query.movie_id}/recommendations`, {
-    next: { revalidate: 60 },
-  });
+  const { movie_id, ...rest } = query;
+  const response = await fetch.get(
+    `${URL_API}/3/movie/${movie_id}/recommendations${queryToString(rest)}`,
+    {
+      next: { revalidate: 60 },
+    },
+  );
   return movieRecommendationsResponseSchema.parse(response);
 };
 export type IMovieRecommedationsFn = Awaited<ReturnType<typeof getMovieRecommedations>>;
@@ -271,7 +278,8 @@ export function useGetMovieRecommendations(
 }
 
 export const getMovieReviews = async ({ fetch, query }: FetcherArgs<MovieReviewsQuery>) => {
-  const response = await fetch.get(`${URL_API}/3/movie/${query.movie_id}/reviews`, {
+  const { movie_id, ...rest } = query;
+  const response = await fetch.get(`${URL_API}/3/movie/${movie_id}/reviews${queryToString(rest)}`, {
     next: { revalidate: 60 },
   });
   return movieReviewsResponseSchema.parse(response);

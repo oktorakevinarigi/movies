@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 
 import { getGenre } from "@/utils";
 import { Spinner } from "@/components/layouts";
-import { ULR_IMAGE } from "@/constants";
+import { ULR_IMAGE, API_KEY } from "@/constants";
 import { Card } from "./card";
 import { useGetMovieNowPlaying, useGetMovieGenres } from "./movie-queries";
 
@@ -32,8 +32,8 @@ function getCard(item: IGetCard, genres: { id: number; name: string }[]) {
 }
 
 export function NowPlaying() {
-  const query = { language: "en-US", page: "1", region: "" };
-  const getMovieGenres = useGetMovieGenres({ language: "en" });
+  const query = { api_key: API_KEY, language: "en-US", page: "1", region: "" };
+  const getMovieGenres = useGetMovieGenres({ api_key: API_KEY, language: "en" });
   const getMovieNowPlaying = useGetMovieNowPlaying(query);
 
   return (

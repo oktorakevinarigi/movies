@@ -12,16 +12,14 @@ import {
   getMovieTopRate,
   MovieTopRateKeys,
 } from "@/components/feature";
+import { API_KEY } from "@/constants";
 
 export default async function Home() {
-  const fetch = fetchNode({
-    token:
-      "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZDU3MDFlNGFhZDliNzRiMmY2Zjk0MTk2OWQxNTYzZCIsInN1YiI6IjY0YTIzYmY2ZDQwMGYzMDBlYmZlNjIxOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.onf64C683ZIDbi4R8EW1PafgzW8_pBFUePoDJ5uaa6c",
-  });
+  const fetch = fetchNode();
   const queryClient = getQueryClient();
 
-  const queryGenre = { language: "en" };
-  const query = { language: "en-US", page: "1", region: "" };
+  const queryGenre = { api_key: API_KEY, language: "en" };
+  const query = { api_key: API_KEY, language: "en-US", page: "1", region: "" };
 
   await Promise.all([
     queryClient.prefetchQuery(MoviePopularKeys.list(query), () =>

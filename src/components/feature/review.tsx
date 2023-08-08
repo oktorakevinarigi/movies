@@ -2,6 +2,7 @@
 import { useParams } from "next/navigation";
 import dayjs from "dayjs";
 
+import { API_KEY } from "@/constants";
 import { IconStar } from "../user-interfaces";
 import { useGetMovieReviews } from "./movie-queries";
 
@@ -35,7 +36,7 @@ function CardReview(item: ICardReview) {
 export function Review() {
   const router = useParams();
   const id = router.id as string;
-  const getMovieReviews = useGetMovieReviews({ movie_id: id });
+  const getMovieReviews = useGetMovieReviews({ api_key: API_KEY, movie_id: id });
 
   if (!getMovieReviews.data?.results.length) {
     return null;

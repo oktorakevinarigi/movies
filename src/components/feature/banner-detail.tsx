@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useParams } from "next/navigation";
 
-import { ULR_IMAGE } from "@/constants";
+import { ULR_IMAGE, API_KEY } from "@/constants";
 import { IconStar } from "../user-interfaces";
 import { SimpleBlock } from "../layouts";
 import { useGetMovieDetail } from "./movie-queries";
@@ -15,6 +15,7 @@ export function BannerDetail() {
   const router = useParams();
   const id = router.id as string;
   const getMovieDetail = useGetMovieDetail({
+    api_key: API_KEY,
     movie_id: id,
     language: "en-US",
     append_to_response: "",

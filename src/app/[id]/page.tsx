@@ -11,24 +11,25 @@ import {
   getMovieReviews,
 } from "@/components/feature";
 import { DetailPage } from "@/components/pages";
+import { API_KEY } from "@/constants";
 
 export default async function Detail({ params }: { params: { id: string } }) {
-  const fetch = fetchNode({
-    token:
-      "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZDU3MDFlNGFhZDliNzRiMmY2Zjk0MTk2OWQxNTYzZCIsInN1YiI6IjY0YTIzYmY2ZDQwMGYzMDBlYmZlNjIxOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.onf64C683ZIDbi4R8EW1PafgzW8_pBFUePoDJ5uaa6c",
-  });
+  const fetch = fetchNode();
   const queryClient = getQueryClient();
 
   const queryDetail = {
+    api_key: API_KEY,
     movie_id: params.id,
     language: "en-US",
     append_to_response: "",
   };
   const queryRecommendations = {
+    api_key: API_KEY,
     movie_id: params.id,
   };
-  const queryGenre = { language: "en" };
+  const queryGenre = { api_key: API_KEY, language: "en" };
   const queryReviews = {
+    api_key: API_KEY,
     movie_id: params.id,
   };
 

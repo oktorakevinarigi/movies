@@ -1,8 +1,8 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
 import { queryToString } from "@/utils";
+import { API_KEY } from "@/constants";
 import { useGetMovieGenres } from "./movie-queries";
-
 // const dataSort = [
 //   {
 //     name: "Popularity Ascending",
@@ -46,7 +46,7 @@ export function Filter() {
   const genre = searchParams.get("genre");
   const sort = searchParams.get("sort");
 
-  const getMovieGenres = useGetMovieGenres({ language: "en" });
+  const getMovieGenres = useGetMovieGenres({ api_key: API_KEY, language: "en" });
 
   // function onSort(value: string) {
   //   router.push(`/movies${queryToString({ genre, sort: value })}`);

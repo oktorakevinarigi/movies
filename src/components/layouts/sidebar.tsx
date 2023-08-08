@@ -3,10 +3,11 @@ import Link from "next/link";
 
 import { IconMovie, CompassIcon, HeartIcon, BellIcon } from "@/components/user-interfaces";
 import { InterFont } from "@/theme/typography";
+import { API_KEY } from "@/constants";
 import { useGetMovieGenres } from "../feature/movie-queries";
 
 export function Sidebar() {
-  const getMovieGenres = useGetMovieGenres({ language: "en" });
+  const getMovieGenres = useGetMovieGenres({ api_key: API_KEY, language: "en" });
   return (
     <div className="w-[229px] min-h-screen bg-[#151515] p-6">
       <Link href="/" className="flex justify-center mb-[52px]">

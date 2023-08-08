@@ -8,6 +8,7 @@ import {
   MovieDiscoverKeys,
 } from "@/components/feature";
 import { MoviesPage } from "@/components/pages";
+import { API_KEY } from "@/constants";
 
 type MoviesProps = {
   searchParams: {
@@ -18,19 +19,17 @@ type MoviesProps = {
 };
 
 export default async function Movies(props: MoviesProps) {
-  const fetch = fetchNode({
-    token:
-      "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZDU3MDFlNGFhZDliNzRiMmY2Zjk0MTk2OWQxNTYzZCIsInN1YiI6IjY0YTIzYmY2ZDQwMGYzMDBlYmZlNjIxOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.onf64C683ZIDbi4R8EW1PafgzW8_pBFUePoDJ5uaa6c",
-  });
+  const fetch = fetchNode();
   const queryClient = getQueryClient();
 
   const queryDiscover = {
+    api_key: API_KEY,
     language: "",
     page: "1",
     with_genres: props.searchParams.genre || "",
     sort_by: props.searchParams.sort || "",
   };
-  const queryGenre = { language: "en" };
+  const queryGenre = { api_key: API_KEY, language: "en" };
 
   await Promise.all([
     queryClient.fetchInfiniteQuery(
