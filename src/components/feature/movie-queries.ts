@@ -56,6 +56,16 @@ export const MovieUpcomingKeys = {
   lists: () => [...MovieUpcomingKeys.all, "LISTS"],
   list: (query: MovieQuery) => [...MovieUpcomingKeys.lists(), cleanQuery(query)],
 };
+export const MovieNowPlayingKeys = {
+  all: ["MOVIE_NOW_PLAYING"],
+  lists: () => [...MovieNowPlayingKeys.all, "LISTS"],
+  list: (query: MovieQuery) => [...MovieNowPlayingKeys.lists(), cleanQuery(query)],
+};
+export const MovieTopRateKeys = {
+  all: ["MOVIE_TOP_RATE"],
+  lists: () => [...MovieTopRateKeys.all, "LISTS"],
+  list: (query: MovieQuery) => [...MovieTopRateKeys.lists(), cleanQuery(query)],
+};
 export const MovieKeys = {
   all: ["MOVIE"],
   lists: () => [...MovieKeys.all, "LISTS"],
@@ -130,6 +140,45 @@ export function useGetMovieUpcoming(
     () => {
       const fetch = fetchBrowser();
       return getMovieUpcoming({ fetch, query });
+    },
+    options,
+  );
+}
+
+export const getMovieNowPlaying = async ({ fetch, query }: FetcherArgs<MovieQuery>) => {
+  const response = await fetch.get(`${URL_API}/3/movie/now_playing${queryToString(query)}`, {
+    next: { revalidate: 60 },
+  });
+  return movieResponseSchema.parse(response);
+};
+export type IMovieNowPlayingFn = Awaited<ReturnType<typeof getMovieNowPlaying>>;
+export function useGetMovieNowPlaying(
+  query: MovieQuery,
+  options?: UseQueryOptions<IMovieNowPlayingFn>,
+) {
+  return useQuery<IMovieNowPlayingFn>(
+    MovieNowPlayingKeys.list(query),
+    () => {
+      const fetch = fetchBrowser();
+      return getMovieNowPlaying({ fetch, query });
+    },
+    options,
+  );
+}
+
+export const getMovieTopRate = async ({ fetch, query }: FetcherArgs<MovieQuery>) => {
+  const response = await fetch.get(`${URL_API}/3/movie/top_rated${queryToString(query)}`, {
+    next: { revalidate: 60 },
+  });
+  return movieResponseSchema.parse(response);
+};
+export type IMovieTopRateFn = Awaited<ReturnType<typeof getMovieTopRate>>;
+export function useGetMovieTopRate(query: MovieQuery, options?: UseQueryOptions<IMovieTopRateFn>) {
+  return useQuery<IMovieTopRateFn>(
+    MovieTopRateKeys.list(query),
+    () => {
+      const fetch = fetchBrowser();
+      return getMovieTopRate({ fetch, query });
     },
     options,
   );

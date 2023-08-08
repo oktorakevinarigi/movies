@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import { getGenre } from "@/utils";
 import { ULR_IMAGE } from "@/constants";
-import { Carousel, IconStar } from "../user-interfaces";
+import { Carousel } from "../user-interfaces";
 import { useGetMoviePopular, useGetMovieGenres } from "./movie-queries";
 
 export function Banner() {
@@ -14,27 +14,43 @@ export function Banner() {
   const getMovieGenres = useGetMovieGenres({ language: "en" });
 
   return (
-    <div className="my-14 hidden sm:block">
+    <div className="my-8 hidden sm:block">
       <Carousel
         slides={getMoviePopular.data?.results.slice(0, 6) || []}
         options={{ loop: true }}
         renderSlide={({ slide }) => (
-          <Link href={`/${slide.id}`} className="flex items-center">
-            <Image src={ULR_IMAGE + slide.poster_path} width={243} height={364} alt={slide.title} />
-            <div className="bg-black text-white h-[324px] w-[300px] p-6 hidden lg:block">
-              <div className="flex gap-1 items-center">
-                <IconStar width="18px" height="18px" />
-                <p className="text-lg font-bold">{slide.vote_average}</p>
-              </div>
-              <div className="flex flex-col gap-3">
-                <p className="text-[28px] leading-[28px]">{slide.title}</p>
-                <div className="flex gap-1 font-normal items-center">
-                  <p>{slide.release_date ? dayjs(slide.release_date).format("YYYY") : null}</p>
+          <Link
+            key={slide.id}
+            href="/"
+            className="w-[704px] h-[281px] bg-black rounded-[20px] flex overflow-hidden ml-10"
+          >
+            <div className="flex-1 p-6 flex flex-col justify-between">
+              <div>
+                <p className="text-white font-bold text-4xl mb-2 line-clamp-2">{slide.title}</p>
+                <div className="flex gap-1 font-normal items-center mb-2">
+                  <p className="text-xs text-white">
+                    {slide.release_date ? dayjs(slide.release_date).format("YYYY") : null}
+                  </p>
                   <div className="h-[6px] w-[6px] rounded-full bg-white bg-opacity-50" />
-                  <p>{getGenre(slide.genre_ids, getMovieGenres.data?.genres || [])}</p>
+                  <p className="text-xs text-white line-clamp-2">
+                    {getGenre(slide.genre_ids, getMovieGenres.data?.genres || [])}
+                  </p>
                 </div>
-                <p className="text-xs font-normal line-clamp-5">{slide.overview}</p>
+                <p className="text-xs text-[#6A6A6A] font-light mb-4 line-clamp-4">
+                  {slide.overview}
+                </p>
               </div>
+              <button className="bg-[#F00F00] rounded-[10px] w-[97px] h-9 text-white text-xl font-semibold shadow-[1px_1px_14px_0px_#F00]">
+                Watch
+              </button>
+            </div>
+            <div className="flex-[1.5] relative before:absolute before:bg-gradient-to-r before:from-black before:from-[5%] before:to-[95%] before:to-transparent before:z-10 before:inset-0">
+              <Image
+                src={ULR_IMAGE + slide.poster_path}
+                alt={slide.title}
+                fill
+                style={{ objectFit: "cover", objectPosition: "center" }}
+              />
             </div>
           </Link>
         )}

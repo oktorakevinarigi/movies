@@ -32,7 +32,7 @@ export function Sidebar() {
       <div>
         <p className="text-[#707070] text-sm font-light mb-8">Categories</p>
         <div className="flex flex-col gap-3">
-          {getMovieGenres.data?.genres.map(genre => (
+          {getMovieGenres.data?.genres.slice(0, 6).map(genre => (
             <Link key={genre.id} href="/">
               <p className="text-sm font-semibold text-[#888888] hover:text-white">{genre.name}</p>
             </Link>

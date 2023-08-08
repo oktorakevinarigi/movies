@@ -1,18 +1,21 @@
-import { Header, Footer, SimpleBlock } from "@/components/layouts";
-import { DiscoverMovies, Banner } from "../feature";
+import { Header, Footer, Sidebar } from "@/components/layouts";
+import { Banner, TopRate, NowPlaying } from "../feature";
 
 export function HomePage() {
   return (
     <>
-      <div className="bg-body bg-opacity-5 h-[66px]">
-        <Header />
+      <div className="fixed overflow-y-auto left-0 top-0 bottom-0">
+        <Sidebar />
       </div>
-      <Banner />
-      <div className="bg-white bg-opacity-[0.05] w-full h-[315px] absolute -z-10 hidden top-[580px] sm:block" />
-      <SimpleBlock className="py-[89px]">
-        <DiscoverMovies />
-      </SimpleBlock>
-      <Footer />
+      <div className="ml-[229px]">
+        <Header />
+        <Banner />
+        <div className="px-10 flex flex-col gap-[18px]">
+          <TopRate />
+          <NowPlaying />
+        </div>
+        <Footer />
+      </div>
     </>
   );
 }

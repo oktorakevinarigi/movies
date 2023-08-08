@@ -7,6 +7,10 @@ import {
   MoviePopularKeys,
   getMovieGenres,
   MovieGenresKeys,
+  getMovieNowPlaying,
+  MovieNowPlayingKeys,
+  getMovieTopRate,
+  MovieTopRateKeys,
 } from "@/components/feature";
 
 export default async function Home() {
@@ -17,11 +21,17 @@ export default async function Home() {
   const queryClient = getQueryClient();
 
   const queryGenre = { language: "en" };
-  const queryPopular = { language: "en-US", page: "1", region: "" };
+  const query = { language: "en-US", page: "1", region: "" };
 
   await Promise.all([
-    queryClient.prefetchQuery(MoviePopularKeys.list(queryPopular), () =>
-      getMoviePopular({ query: queryPopular, fetch }),
+    queryClient.prefetchQuery(MoviePopularKeys.list(query), () =>
+      getMoviePopular({ query: query, fetch }),
+    ),
+    queryClient.prefetchQuery(MovieNowPlayingKeys.list(query), () =>
+      getMovieNowPlaying({ query: query, fetch }),
+    ),
+    queryClient.prefetchQuery(MovieTopRateKeys.list(query), () =>
+      getMovieTopRate({ query: query, fetch }),
     ),
     queryClient.prefetchQuery(MovieGenresKeys.list(queryGenre), () =>
       getMovieGenres({ query: queryGenre, fetch }),

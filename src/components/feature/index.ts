@@ -9,6 +9,10 @@ export {
   getMovieGenres,
   MoviePopularKeys,
   getMoviePopular,
+  getMovieNowPlaying,
+  MovieNowPlayingKeys,
+  getMovieTopRate,
+  MovieTopRateKeys,
   useGetMovieSearch,
   getMovieDetail,
   MovieKeys,
@@ -19,3 +23,5 @@ export {
   getMovieDiscover,
   MovieDiscoverKeys,
 } from "./movie-queries";
+export { TopRate } from "./top-rate";
+export { NowPlaying } from "./now-playing";
