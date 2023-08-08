@@ -53,7 +53,7 @@ export function CarouselDesktop<Item extends { id: number | string }>(
                 key={id}
                 className={`${
                   idx === selectedIndex
-                    ? "w-[60px] h-3 bg-[#E74C3C]"
+                    ? "w-[60px] h-3 bg-[#F00F00]"
                     : "bg-[#FFFFFF] bg-opacity-50 w-3 h-3"
                 } rounded-full cursor-pointer`}
                 onClick={() => scrollTo(idx)}
