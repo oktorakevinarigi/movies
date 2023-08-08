@@ -1,17 +1,41 @@
 "use client";
+import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import Image from "next/image";
 import dayjs from "dayjs";
-import Link from "next/link";
 
 import { getGenre } from "@/utils";
 import { ULR_IMAGE, API_KEY } from "@/constants";
+import { YoutubeSection } from "@/components/general";
 import { Carousel } from "../user-interfaces";
-import { useGetMoviePopular, useGetMovieGenres } from "./movie-queries";
+import { useGetMoviePopular, useGetMovieGenres, useGetMovieVideos } from "./movie-queries";
+const Modal = dynamic(() => import("@/components/user-interfaces").then(m => m.Modal), {
+  ssr: false,
+});
 
 export function Banner() {
+  const [modal, setModal] = useState({ visible: false, movieId: "" });
+  const router = useRouter();
   const query = { api_key: API_KEY, language: "en-US", page: "1", region: "" };
   const getMoviePopular = useGetMoviePopular(query);
   const getMovieGenres = useGetMovieGenres({ api_key: API_KEY, language: "en" });
+  const getMovieVideos = useGetMovieVideos(
+    { api_key: API_KEY, movie_id: modal.movieId },
+    { enabled: modal.visible },
+  );
+
+  function onWatch(movieId: string) {
+    setModal({ visible: true, movieId });
+  }
+
+  function onClose() {
+    setModal({ visible: false, movieId: "" });
+  }
+
+  function onDetail(id: string) {
+    router.push(`/${id}`);
+  }
 
   return (
     <div className="my-8 hidden sm:block">
@@ -19,10 +43,12 @@ export function Banner() {
         slides={getMoviePopular.data?.results.slice(0, 6) || []}
         options={{ loop: true }}
         renderSlide={({ slide }) => (
-          <Link
+          <div
             key={slide.id}
-            href="/"
-            className="ml-10 flex h-[281px] w-[704px] overflow-hidden rounded-[20px] bg-black"
+            onClick={() => {
+              onDetail(slide.id.toString());
+            }}
+            className="ml-10 flex h-[281px] w-[704px] cursor-pointer overflow-hidden rounded-[20px] bg-black"
           >
             <div className="flex flex-1 flex-col justify-between p-6">
               <div>
@@ -40,7 +66,13 @@ export function Banner() {
                   {slide.overview}
                 </p>
               </div>
-              <button className="h-9 w-[97px] rounded-[10px] bg-[#F00F00] text-xl font-semibold text-white shadow-[1px_1px_14px_0px_#F00]">
+              <button
+                onClick={e => {
+                  e.stopPropagation();
+                  onWatch(slide.id.toString());
+                }}
+                className="h-9 w-[97px] rounded-[10px] bg-[#F00F00] text-xl font-semibold text-white shadow-[1px_1px_14px_0px_#F00]"
+              >
                 Watch
               </button>
             </div>
@@ -52,9 +84,17 @@ export function Banner() {
                 style={{ objectFit: "cover", objectPosition: "center" }}
               />
             </div>
-          </Link>
+          </div>
         )}
       />
+
+      {modal.visible && getMovieVideos.data && (
+        <Modal onClose={onClose} isOpen={modal.visible}>
+          <YoutubeSection
+            id={getMovieVideos.data.results.find(movie => movie.type === "Trailer")?.key || ""}
+          />
+        </Modal>
+      )}
     </div>
   );
 }

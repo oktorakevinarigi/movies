@@ -4,15 +4,10 @@ import { Movies } from "../feature";
 export function MoviesPage() {
   return (
     <>
-      <div className="bg-body h-[66px] bg-opacity-5">
-        <Header />
-      </div>
-      <div className="absolute -z-10 h-[315px] w-full bg-white bg-opacity-[0.05]" />
-
+      <Header />
       <SimpleBlock className="py-14">
         <Movies />
       </SimpleBlock>
-
       <Footer />
     </>
   );

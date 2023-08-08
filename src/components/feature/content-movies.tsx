@@ -30,8 +30,8 @@ export function ContentMovies() {
   }
 
   return (
-    <div className="flex flex-1 flex-col">
-      <div className="flex flex-wrap justify-center gap-5 sm:justify-start">
+    <div className="flex-1">
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(205px,1fr))] gap-5">
         {getMovieDiscover.data?.pages
           .map(page => page.results ?? [])
           .flat()
@@ -48,16 +48,17 @@ export function ContentMovies() {
             </div>
           ))}
       </div>
-
-      {getMovieDiscover.isFetching ? <Spinner /> : null}
-      {getMovieDiscover.hasNextPage ? (
-        <button
-          className="text-primary m-auto mt-5 w-[151px] rounded-full bg-[#F00] py-2 text-sm font-semibold"
-          onClick={onLoadMore}
-        >
-          Load More
-        </button>
-      ) : null}
+      <div className="flex w-full flex-col justify-center">
+        {getMovieDiscover.isFetching ? <Spinner /> : null}
+        {getMovieDiscover.hasNextPage ? (
+          <button
+            className="m-auto mt-5 w-[151px] rounded-full bg-[#F00] py-2 text-sm font-semibold text-white"
+            onClick={onLoadMore}
+          >
+            Load More
+          </button>
+        ) : null}
+      </div>
     </div>
   );
 }

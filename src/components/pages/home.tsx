@@ -10,7 +10,7 @@ export function HomePage() {
       <div className="ml-[229px]">
         <Header />
         <Banner />
-        <div className="flex flex-col gap-[18px] px-10">
+        <div className="mb-10 flex flex-col gap-[18px] px-10">
           <TopRate />
           <NowPlaying />
         </div>

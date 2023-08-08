@@ -157,3 +157,21 @@ export const movieReviewsResponseSchema = z.object({
   total_pages: z.number(),
   total_results: z.number(),
 });
+
+export const movieVideosResponseSchema = z.object({
+  id: z.number(),
+  results: z
+    .object({
+      iso_639_1: z.enum(["en"]),
+      iso_3166_1: z.enum(["US"]),
+      name: z.string(),
+      key: z.string(),
+      site: z.enum(["YouTube"]),
+      size: z.number(),
+      type: z.enum(["Behind the Scenes", "Clip", "Featurette", "Teaser", "Trailer"]),
+      official: z.boolean(),
+      published_at: z.string(),
+      id: z.string(),
+    })
+    .array(),
+});
