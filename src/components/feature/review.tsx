@@ -15,20 +15,20 @@ type ICardReview = {
 
 function CardReview(item: ICardReview) {
   return (
-    <div className="bg-[#F9F9F9] rounded-[14px] p-6 w-full sm:w-[582px]">
-      <div className="flex justify-between mb-6">
+    <div className="w-full rounded-[14px] bg-[#F9F9F9] p-6 sm:w-[582px]">
+      <div className="mb-6 flex justify-between">
         <div>
           <p className="text-sm font-bold">{item.name}</p>
-          <p className="text-xs text-gray-default">{item.date}</p>
+          <p className="text-gray-default text-xs">{item.date}</p>
         </div>
         {item.ratings ? (
-          <div className="bg-[#C4C4C4] bg-opacity-20 p-1 flex rounded-md gap-[6px]">
+          <div className="flex gap-[6px] rounded-md bg-[#C4C4C4] bg-opacity-20 p-1">
             <IconStar className="mt-2" />
             <p className="text-4xl font-semibold">{item.ratings}</p>
           </div>
         ) : null}
       </div>
-      <p className="italic text-sm ">{item.content}</p>
+      <p className="text-sm italic ">{item.content}</p>
     </div>
   );
 }
@@ -44,7 +44,7 @@ export function Review() {
 
   return (
     <>
-      <p className="text-[#F00] text-sm font-semibold mb-6">REVIEWS</p>
+      <p className="mb-6 text-sm font-semibold text-[#F00]">REVIEWS</p>
 
       <div className="flex flex-col justify-between gap-[34px] sm:flex-row">
         {getMovieReviews.data?.results

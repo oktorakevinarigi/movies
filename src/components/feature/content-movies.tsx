@@ -30,8 +30,8 @@ export function ContentMovies() {
   }
 
   return (
-    <div className="flex flex-col flex-1">
-      <div className="flex flex-wrap gap-5 justify-center sm:justify-start">
+    <div className="flex flex-1 flex-col">
+      <div className="flex flex-wrap justify-center gap-5 sm:justify-start">
         {getMovieDiscover.data?.pages
           .map(page => page.results ?? [])
           .flat()
@@ -52,7 +52,7 @@ export function ContentMovies() {
       {getMovieDiscover.isFetching ? <Spinner /> : null}
       {getMovieDiscover.hasNextPage ? (
         <button
-          className="text-primary text-sm font-semibold py-2 bg-[#F00] rounded-full w-[151px] m-auto mt-5"
+          className="text-primary m-auto mt-5 w-[151px] rounded-full bg-[#F00] py-2 text-sm font-semibold"
           onClick={onLoadMore}
         >
           Load More

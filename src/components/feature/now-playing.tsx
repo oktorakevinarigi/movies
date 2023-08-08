@@ -38,11 +38,11 @@ export function NowPlaying() {
 
   return (
     <>
-      <p className="text-white font-semibold text-sm mb-4">Now Playing</p>
+      <p className="mb-4 text-sm font-semibold text-white">Now Playing</p>
 
       <div className="grid grid-cols-[repeat(auto-fill,minmax(205px,1fr))] gap-10">
         {getMovieNowPlaying.isLoading ? (
-          <div className="flex justify-center w-full mb-9">
+          <div className="mb-9 flex w-full justify-center">
             <Spinner />
           </div>
         ) : (

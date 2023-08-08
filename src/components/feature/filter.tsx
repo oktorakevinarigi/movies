@@ -64,8 +64,8 @@ export function Filter() {
   }
 
   return (
-    <div className="w-60 rounded-lg h-fit bg-gradient-to-b from-[#0E1723] to-transparent">
-      <p className="text-primary font-semibold p-5 border-b border-white border-opacity-5">
+    <div className="h-fit w-60 rounded-lg bg-gradient-to-b from-[#0E1723] to-transparent">
+      <p className="text-primary border-b border-white border-opacity-5 p-5 font-semibold">
         Sort Result By
       </p>
       {/* <div className="px-5 pt-5 pb-[31px] border-b border-white border-opacity-5">
@@ -86,10 +86,10 @@ export function Filter() {
           </SelectContent>
         </Select>
       </div> */}
-      <p className="text-primary font-semibold p-5 border-b border-white border-opacity-5 mb-[18px]">
+      <p className="text-primary mb-[18px] border-b border-white border-opacity-5 p-5 font-semibold">
         Genres
       </p>
-      <div className="px-5 flex flex-col gap-4 pb-5">
+      <div className="flex flex-col gap-4 px-5 pb-5">
         {getMovieGenres.data?.genres.map(item => (
           <div key={item.id} className="flex justify-between">
             <p className="text-white">{item.name}</p>

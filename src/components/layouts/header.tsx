@@ -50,14 +50,14 @@ export function Header() {
   }
 
   return (
-    <div className="h-10 w-full flex justify-center py-8">
+    <div className="flex h-10 w-full justify-center py-8">
       <div className="relative h-10">
-        <IconSearchMovie className="absolute top-1/2 left-3 -translate-y-[50%]" />
+        <IconSearchMovie className="absolute left-3 top-1/2 -translate-y-[50%]" />
         <input
           id="container"
           ref={boxListRef}
           type="text"
-          className="rounded-xl w-full md:w-60 h-10 lg:w-[540px] bg-[#272727] shadow-lg bg-opacity-40 px-10 text-white outline-none text-sm"
+          className="h-10 w-full rounded-xl bg-[#272727] bg-opacity-40 px-10 text-sm text-white shadow-lg outline-none md:w-60 lg:w-[540px]"
           placeholder="search any movies....."
           onChange={e => onChangeSearch(e.target.value)}
           onClick={() => setIsList(true)}
@@ -67,9 +67,9 @@ export function Header() {
 
         {/* List Search */}
         {isList && (
-          <div className="absolute z-50 left-0 top-11 w-full">
-            <div className="inset-0 flex items-end justify-center text-center sm:items-center w-full">
-              <div className="bg-black bg-opacity-80 px-4 pb-4 pt-5 sm:p-6 sm:pb-4 space-y-2 transform rounded-lg text-left shadow-xl transition-all w-full max-h-[300px] overflow-y-auto">
+          <div className="absolute left-0 top-11 z-50 w-full">
+            <div className="inset-0 flex w-full items-end justify-center text-center sm:items-center">
+              <div className="max-h-[300px] w-full transform space-y-2 overflow-y-auto rounded-lg bg-black bg-opacity-80 px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:p-6 sm:pb-4">
                 {getMovieSearch.isFetching ? (
                   <Spinner />
                 ) : getMovieSearch.data?.results.length ? (
@@ -80,20 +80,20 @@ export function Header() {
                           key={item.id}
                           href={`/${item.id}`}
                           tabIndex={0}
-                          className="text-white flex justify-between cursor-pointer hover:bg-blue-50 hover:text-black p-2"
+                          className="flex cursor-pointer justify-between p-2 text-white hover:bg-blue-50 hover:text-black"
                         >
                           <Highlighter
                             highlightClassName="font-semibold bg-transparent text-white"
                             searchWords={[deb]}
                             textToHighlight={item.title}
-                            className="font-light line-clamp-1 text-sm"
+                            className="line-clamp-1 text-sm font-light"
                           />
                         </Link>
                       );
                     }
                   })
                 ) : (
-                  <div className="h-20 flex justify-center items-center text-slate-600 dark:text-slate-400 text-sm">
+                  <div className="flex h-20 items-center justify-center text-sm text-slate-600 dark:text-slate-400">
                     No results found
                   </div>
                 )}

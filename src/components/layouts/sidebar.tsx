@@ -9,29 +9,29 @@ import { useGetMovieGenres } from "../feature/movie-queries";
 export function Sidebar() {
   const getMovieGenres = useGetMovieGenres({ api_key: API_KEY, language: "en" });
   return (
-    <div className="w-[229px] min-h-screen bg-[#151515] p-6">
-      <Link href="/" className="flex justify-center mb-[52px]">
+    <div className="min-h-screen w-[229px] bg-[#151515] p-6">
+      <Link href="/" className="mb-[52px] flex justify-center">
         <IconMovie width="100px" />
       </Link>
 
-      <div className="flex flex-col gap-6 mb-[36px]">
-        <p className="text-[#707070] text-sm font-light">New feed</p>
+      <div className="mb-[36px] flex flex-col gap-6">
+        <p className="text-sm font-light text-[#707070]">New feed</p>
         <Link href="/" className="flex items-center gap-3">
           <CompassIcon width="24px" height="24px" className="text-[#707070]" />
-          <p className={`${InterFont.className} font-medium text-white text-xs`}>Browse</p>
+          <p className={`${InterFont.className} text-xs font-medium text-white`}>Browse</p>
         </Link>
         <Link href="/" className=" flex items-center gap-3">
           <HeartIcon width="24px" height="24px" className="text-[#707070]" />
-          <p className={`${InterFont.className} font-medium text-white text-xs`}>Watchlist</p>
+          <p className={`${InterFont.className} text-xs font-medium text-white`}>Watchlist</p>
         </Link>
         <Link href="/" className=" flex items-center gap-3">
           <BellIcon width="24px" height="24px" className="text-[#707070]" />
-          <p className={`${InterFont.className} font-medium text-white text-xs`}>Remind</p>
+          <p className={`${InterFont.className} text-xs font-medium text-white`}>Remind</p>
         </Link>
       </div>
 
       <div>
-        <p className="text-[#707070] text-sm font-light mb-8">Categories</p>
+        <p className="mb-8 text-sm font-light text-[#707070]">Categories</p>
         <div className="flex flex-col gap-3">
           {getMovieGenres.data?.genres.slice(0, 6).map(genre => (
             <Link key={genre.id} href="/">

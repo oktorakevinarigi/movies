@@ -4,10 +4,10 @@ import { Movies } from "../feature";
 export function MoviesPage() {
   return (
     <>
-      <div className="bg-body bg-opacity-5 h-[66px]">
+      <div className="bg-body h-[66px] bg-opacity-5">
         <Header />
       </div>
-      <div className="bg-white bg-opacity-[0.05] w-full h-[315px] absolute -z-10" />
+      <div className="absolute -z-10 h-[315px] w-full bg-white bg-opacity-[0.05]" />
 
       <SimpleBlock className="py-14">
         <Movies />

@@ -19,9 +19,9 @@ export function Recommendation() {
 
   return (
     <>
-      <p className="text-white font-semibold text-sm mb-9">RECOMMENDATION MOVIES</p>
+      <p className="mb-9 text-sm font-semibold text-white">RECOMMENDATION MOVIES</p>
 
-      <div className="flex flex-wrap gap-5 justify-center md:justify-start">
+      <div className="flex flex-wrap justify-center gap-5 md:justify-start">
         {getMovieRecommendations.data?.results.slice(0, 5).map(item => (
           <div key={item.id}>
             <Card

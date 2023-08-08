@@ -4,13 +4,13 @@ import { Banner, TopRate, NowPlaying } from "../feature";
 export function HomePage() {
   return (
     <>
-      <div className="fixed overflow-y-auto left-0 top-0 bottom-0">
+      <div className="fixed bottom-0 left-0 top-0 overflow-y-auto">
         <Sidebar />
       </div>
       <div className="ml-[229px]">
         <Header />
         <Banner />
-        <div className="px-10 flex flex-col gap-[18px]">
+        <div className="flex flex-col gap-[18px] px-10">
           <TopRate />
           <NowPlaying />
         </div>

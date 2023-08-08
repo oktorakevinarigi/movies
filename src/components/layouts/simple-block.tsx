@@ -9,7 +9,7 @@ type SimpleBlockProps = {
 export function SimpleBlock({ children, ...restProps }: SimpleBlockProps) {
   const { className, ...rest } = restProps;
   return (
-    <div className={cn("max-w-[1200px] w-full ms-auto me-auto px-5 xl:px-0", className)} {...rest}>
+    <div className={cn("me-auto ms-auto w-full max-w-[1200px] px-5 xl:px-0", className)} {...rest}>
       {children}
     </div>
   );
