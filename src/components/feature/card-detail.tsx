@@ -1,9 +1,13 @@
+"use client";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
+import { fadeIn } from "@/utils";
 import { IconStar } from "../user-interfaces";
 
-type CardProps = {
+type CardDetailProps = {
+  index: number;
   id: number;
   urlImage: string;
   title: string;
@@ -12,11 +16,11 @@ type CardProps = {
   genre: string;
 };
 
-export function Card(props: CardProps) {
-  const { id, urlImage, title, year, ratings, genre } = props;
+export function CardDetail(props: CardDetailProps) {
+  const { index, id, urlImage, title, year, ratings, genre } = props;
 
   return (
-    <>
+    <motion.div variants={fadeIn("right", "spring", index * 0.5, 0.75)}>
       <div className="group relative mb-3 h-[330px] overflow-hidden rounded-xl">
         <Image
           src={urlImage || "/images/no-images.jpg"}
@@ -49,6 +53,6 @@ export function Card(props: CardProps) {
 
       <p className="line-clamp-2 font-semibold text-white">{title}</p>
       <p className="text-sm text-[#707070]">{year}</p>
-    </>
+    </motion.div>
   );
 }

@@ -1,10 +1,11 @@
 "use client";
 import { useParams } from "next/navigation";
 import dayjs from "dayjs";
+import { motion } from "framer-motion";
 
 import { getGenre } from "@/utils";
 import { ULR_IMAGE, API_KEY } from "@/constants";
-import { Card } from "./card";
+import { CardDetail } from "./card-detail";
 import { useGetMovieRecommendations, useGetMovieGenres } from "./movie-queries";
 
 export function Recommendation() {
@@ -21,10 +22,17 @@ export function Recommendation() {
     <>
       <p className="mb-9 text-sm font-semibold text-white">RECOMMENDATION MOVIES</p>
 
-      <div className="flex flex-wrap justify-center gap-5 md:justify-start">
-        {getMovieRecommendations.data?.results.slice(0, 5).map(item => (
+      <motion.div
+        variants={{ hidden: {}, show: {} }}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.25 }}
+        className="grid min-h-[70vh] grid-cols-[repeat(auto-fill,minmax(205px,1fr))] flex-col gap-5 lg:flex-row"
+      >
+        {getMovieRecommendations.data?.results.slice(0, 5).map((item, index) => (
           <div key={item.id}>
-            <Card
+            <CardDetail
+              index={index}
               id={item.id}
               urlImage={item.poster_path ? ULR_IMAGE + item.poster_path : ""}
               title={item.title}
@@ -34,7 +42,7 @@ export function Recommendation() {
             />
           </div>
         ))}
-      </div>
+      </motion.div>
     </>
   );
 }

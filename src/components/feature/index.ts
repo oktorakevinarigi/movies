@@ -25,3 +25,4 @@ export {
 } from "./movie-queries";
 export { TopRate } from "./top-rate";
 export { NowPlaying } from "./now-playing";
+export { CardDetail } from "./card-detail";
