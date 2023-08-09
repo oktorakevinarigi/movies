@@ -1,9 +1,9 @@
 import { ULR_IMAGE } from "@/constants";
-import { Card } from "../../card";
+import { Card } from "../card";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
-  title: "Features / Movies / Card Movies",
+  title: "Features / Movies / Card",
   component: Card,
 } satisfies Meta<typeof Card>;
 

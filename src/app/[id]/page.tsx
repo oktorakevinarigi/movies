@@ -1,5 +1,6 @@
 import { dehydrate, Hydrate } from "@tanstack/react-query";
-import { fetchNode, getQueryClient } from "@/utils";
+import { getQueryClient } from "@/utils/query-client";
+import { fetchNode } from "@/utils";
 import {
   getMovieDetail,
   MovieKeys,

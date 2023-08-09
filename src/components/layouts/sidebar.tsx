@@ -1,13 +1,10 @@
-"use client";
 import Link from "next/link";
 
 import { IconMovie, HomeIcon, MovieIcon } from "@/components/user-interfaces";
 import { InterFont } from "@/theme/typography";
-import { API_KEY } from "@/constants";
-import { useGetMovieGenres } from "../feature/movie-queries";
+import { CategoriesMovie } from "../feature/movies";
 
 export function Sidebar() {
-  const getMovieGenres = useGetMovieGenres({ api_key: API_KEY, language: "en" });
   return (
     <div className="min-h-screen w-[229px] bg-[#151515] p-6">
       <Link href="/" className="mb-[52px] flex justify-center">
@@ -26,16 +23,7 @@ export function Sidebar() {
         </Link>
       </div>
 
-      <div>
-        <p className="mb-8 text-sm font-light text-[#707070]">Categories</p>
-        <div className="flex flex-col gap-3">
-          {getMovieGenres.data?.genres.slice(0, 6).map(genre => (
-            <Link key={genre.id} href={`/movies?genre=${genre.id}`}>
-              <p className="text-sm font-semibold text-[#888888] hover:text-white">{genre.name}</p>
-            </Link>
-          ))}
-        </div>
-      </div>
+      <CategoriesMovie />
     </div>
   );
 }

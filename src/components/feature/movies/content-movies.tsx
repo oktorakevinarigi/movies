@@ -3,9 +3,9 @@ import { useSearchParams } from "next/navigation";
 import dayjs from "dayjs";
 
 import { getGenre } from "@/utils";
-import { Spinner } from "@/components/layouts";
 import { ULR_IMAGE, API_KEY } from "@/constants";
-import { useGetInfiniteMovieDiscover, useGetMovieGenres } from "./movie-queries";
+import { Spinner } from "../../general";
+import { useGetInfiniteMovieDiscover, useGetMovieGenres } from "../movie-queries";
 import { Card } from "./card";
 
 export function ContentMovies() {

@@ -53,6 +53,7 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.0.2",
     "@storybook/addon-essentials": "^7.2.1",
     "@storybook/addon-interactions": "^7.2.1",
     "@storybook/addon-links": "^7.2.1",
@@ -72,8 +73,13 @@
     "eslint-plugin-storybook": "^0.6.13",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
+    "msw": "^1.2.3",
+    "msw-storybook-addon": "^1.8.0",
     "prettier": "^3.0.1",
     "prettier-plugin-tailwindcss": "^0.4.1",
     "storybook": "^7.2.1"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

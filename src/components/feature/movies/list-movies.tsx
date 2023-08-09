@@ -1,7 +1,7 @@
 import { ContentMovies } from "./content-movies";
 import { Filter } from "./filter";
 
-export function Movies() {
+export function ListMovies() {
   return (
     <>
       <p className="mb-14 text-2xl font-semibold text-white">Movies</p>

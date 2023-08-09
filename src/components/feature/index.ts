@@ -3,7 +3,6 @@ export { Banner } from "./banner";
 export { BannerDetail } from "./banner-detail";
 export { Review } from "./review";
 export { Recommendation } from "./recommendation";
-export { Movies } from "./movies";
 export {
   MovieGenresKeys,
   getMovieGenres,
@@ -26,3 +25,4 @@ export {
 export { TopRate } from "./top-rate";
 export { NowPlaying } from "./now-playing";
 export { CardDetail } from "./card-detail";
+export * from "./movies";

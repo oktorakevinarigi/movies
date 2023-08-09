@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { getGenre } from "@/utils";
 import { Spinner } from "@/components/layouts";
 import { ULR_IMAGE, API_KEY } from "@/constants";
-import { Card } from "./card";
+import { Card } from "./movies/card";
 import { useGetMovieNowPlaying, useGetMovieGenres } from "./movie-queries";
 
 type IGetCard = {

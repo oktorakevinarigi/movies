@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { IconStar } from "../user-interfaces";
+import { IconStar } from "../../user-interfaces";
 
 type CardProps = {
   id: number;
