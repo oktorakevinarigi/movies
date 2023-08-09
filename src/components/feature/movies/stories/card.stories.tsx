@@ -1,0 +1,28 @@
+import { ULR_IMAGE } from "@/constants";
+import { Card } from "../../card";
+import type { Meta, StoryObj } from "@storybook/react";
+
+const meta = {
+  title: "Features / Movies / Card Movies",
+  component: Card,
+} satisfies Meta<typeof Card>;
+
+export default meta;
+type CardMoviesStory = StoryObj<typeof meta>;
+
+// More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
+export const Desktop: CardMoviesStory = {
+  render: args => (
+    <div className="w-[250px]">
+      <Card {...args} />
+    </div>
+  ),
+  args: {
+    genre: "Action",
+    id: 238,
+    ratings: 8.7,
+    title: "The Godfather",
+    urlImage: ULR_IMAGE + "rSPw7tgCH9c6NqICZef4kZjFOQ5.jpg",
+    year: "1972",
+  },
+};

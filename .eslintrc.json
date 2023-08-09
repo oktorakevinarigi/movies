@@ -5,7 +5,8 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:import/recommended",
     "plugin:sonarjs/recommended",
-    "prettier"
+    "prettier",
+    "plugin:storybook/recommended"
   ],
   "plugins": ["sonarjs", "prettier"],
   "rules": {
