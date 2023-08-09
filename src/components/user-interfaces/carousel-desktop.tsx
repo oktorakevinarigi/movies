@@ -36,7 +36,7 @@ export function CarouselDesktop<Item extends { id: number | string }>(
             {slides.map((slide, index) => (
               <div
                 key={slide.id}
-                className={`relative flex-shrink-0 flex-grow-0 basis-[cal(100/${slidesToShow})%] min-w-0 pl-4`}
+                className={`relative flex-shrink-0 flex-grow-0 max-sm:basis-full sm:basis-[cal(100/${slidesToShow})%] min-w-0 pl-4`}
               >
                 {renderSlide({ slide, index })}
               </div>

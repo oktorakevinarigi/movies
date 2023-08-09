@@ -26,7 +26,7 @@ export function Recommendation() {
         variants={{ hidden: {}, show: {} }}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: false, amount: 0.25 }}
+        viewport={{ once: true, amount: 0.25 }}
         className="grid min-h-[70vh] grid-cols-[repeat(auto-fill,minmax(205px,1fr))] flex-col gap-5 lg:flex-row"
       >
         {getMovieRecommendations.data?.results.slice(0, 5).map((item, index) => (

@@ -38,7 +38,7 @@ export function Banner() {
   }
 
   return (
-    <div className="my-8 hidden sm:block">
+    <div className="my-8 w-full px-5 sm:px-0">
       <Carousel
         slides={getMoviePopular.data?.results.slice(0, 6) || []}
         options={{ loop: true }}
@@ -48,7 +48,7 @@ export function Banner() {
             onClick={() => {
               onDetail(slide.id.toString());
             }}
-            className="ml-10 flex h-[281px] w-[704px] cursor-pointer overflow-hidden rounded-[20px] bg-black"
+            className="flex h-[281] w-full cursor-pointer overflow-hidden rounded-[20px] bg-black sm:ml-10 sm:h-[281px] sm:w-[500px] lg:h-[281px] lg:w-[704px]"
           >
             <div className="flex flex-1 flex-col justify-between p-6">
               <div>
@@ -76,12 +76,13 @@ export function Banner() {
                 Watch
               </button>
             </div>
-            <div className="relative flex-[1.5] before:absolute before:inset-0 before:z-10 before:bg-gradient-to-r before:from-black before:from-[5%] before:to-transparent before:to-[95%]">
+            <div className="relative hidden flex-[1.5] before:absolute before:inset-0 before:z-10 before:bg-gradient-to-r before:from-black before:from-[5%] before:to-transparent before:to-[95%] sm:block">
               <Image
                 src={ULR_IMAGE + slide.poster_path}
                 alt={slide.title}
                 fill
                 style={{ objectFit: "cover", objectPosition: "center" }}
+                sizes="400px"
               />
             </div>
           </div>

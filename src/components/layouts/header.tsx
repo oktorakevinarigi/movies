@@ -50,14 +50,14 @@ export function Header() {
   }
 
   return (
-    <div className="flex h-10 w-full justify-center py-8">
-      <div className="relative h-10">
+    <div className="flex w-full justify-center py-8">
+      <div className="relative h-10 max-sm:mx-5 max-sm:w-full">
         <IconSearchMovie className="absolute left-3 top-1/2 -translate-y-[50%]" />
         <input
           id="container"
           ref={boxListRef}
           type="text"
-          className="h-10 w-full rounded-xl bg-[#272727] bg-opacity-40 px-10 text-sm text-white shadow-lg outline-none md:w-60 lg:w-[540px]"
+          className="h-10 w-full rounded-xl bg-[#272727] bg-opacity-40 px-10 text-sm text-white shadow-[0px_2px_12px_7px_rgba(0,0,0,0.25)] outline-none sm:w-[450px] md:w-[500px]"
           placeholder="search any movies....."
           onChange={e => onChangeSearch(e.target.value)}
           onClick={() => setIsList(true)}
@@ -80,7 +80,7 @@ export function Header() {
                           key={item.id}
                           href={`/${item.id}`}
                           tabIndex={0}
-                          className="flex cursor-pointer justify-between p-2 text-white hover:bg-blue-50 hover:text-black"
+                          className="flex cursor-pointer justify-between p-2 text-white hover:bg-white hover:bg-opacity-30"
                         >
                           <Highlighter
                             highlightClassName="font-semibold bg-transparent text-white"

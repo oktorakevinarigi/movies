@@ -13,10 +13,7 @@ export function TopRate() {
 
   return (
     <div>
-      <div className="mb-4 flex gap-4">
-        <p className="text-sm text-white">Movies</p>
-        <p className="text-sm text-[#707070]">Tv Show</p>
-      </div>
+      <p className="mb-4 text-sm font-semibold text-white">Movies Top Rate</p>
 
       <div className="w-full overflow-x-auto py-1">
         <div className="flex animate-carousel gap-4">
@@ -32,6 +29,7 @@ export function TopRate() {
                   alt={movie.title}
                   fill
                   style={{ objectFit: "cover", objectPosition: "center" }}
+                  sizes="39px"
                 />
               </div>
               <p className="line-clamp-2 text-sm font-semibold text-white">{movie.title}</p>

@@ -23,6 +23,7 @@ export function Card(props: CardProps) {
           alt={title}
           fill
           style={{ objectFit: "cover", objectPosition: "center" }}
+          sizes="330px"
         />
         <div className="hidden rounded-xl group-hover:absolute group-hover:left-0 group-hover:right-0 group-hover:top-0 group-hover:z-20 group-hover:flex group-hover:h-[330px] group-hover:flex-col group-hover:items-center group-hover:justify-center group-hover:gap-12 group-hover:bg-black group-hover:bg-opacity-80">
           {ratings ? (
