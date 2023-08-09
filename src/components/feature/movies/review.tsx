@@ -3,7 +3,7 @@ import { useParams } from "next/navigation";
 import dayjs from "dayjs";
 
 import { API_KEY } from "@/constants";
-import { IconStar } from "../user-interfaces";
+import { IconStar } from "../../user-interfaces";
 import { useGetMovieReviews } from "./movie-queries";
 
 type ICardReview = {

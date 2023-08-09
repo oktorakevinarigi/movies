@@ -53,7 +53,7 @@ export default async function Detail({ params }: { params: { id: string } }) {
 
   return (
     <Hydrate state={dehydratedState}>
-      <DetailPage />
+      <DetailPage id={params.id} />
     </Hydrate>
   );
 }

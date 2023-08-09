@@ -3,7 +3,7 @@ import React from "react";
 import Link from "next/link";
 
 import { API_KEY } from "@/constants";
-import { useGetMovieGenres } from "../movie-queries";
+import { useGetMovieGenres } from "./movie-queries";
 
 export function CategoriesMovie() {
   const getMovieGenres = useGetMovieGenres({ api_key: API_KEY, language: "en" });

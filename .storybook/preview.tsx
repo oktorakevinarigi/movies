@@ -31,6 +31,9 @@ const preview: Preview = {
     },
     darkMode: { current: "light" },
     layout: "centered",
+    nextjs: {
+      appDirectory: true,
+    },
   },
   loaders: [mswLoader],
   decorators: [

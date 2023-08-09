@@ -1,16 +1,18 @@
 "use client";
-import { useParams } from "next/navigation";
 import dayjs from "dayjs";
 import { motion } from "framer-motion";
 
 import { getGenre } from "@/utils";
 import { ULR_IMAGE, API_KEY } from "@/constants";
-import { CardDetail } from "./card-detail";
 import { useGetMovieRecommendations, useGetMovieGenres } from "./movie-queries";
+import { Card } from "./card";
 
-export function Recommendation() {
-  const router = useParams();
-  const id = router.id as string;
+type RecommendationProps = {
+  id: string;
+};
+
+export function Recommendation(props: RecommendationProps) {
+  const { id } = props;
   const getMovieGenres = useGetMovieGenres({ api_key: API_KEY, language: "en" });
   const getMovieRecommendations = useGetMovieRecommendations({ api_key: API_KEY, movie_id: id });
 
@@ -31,7 +33,7 @@ export function Recommendation() {
       >
         {getMovieRecommendations.data?.results.slice(0, 5).map((item, index) => (
           <div key={item.id}>
-            <CardDetail
+            <Card
               index={index}
               id={item.id}
               urlImage={item.poster_path ? ULR_IMAGE + item.poster_path : ""}

@@ -3,7 +3,7 @@ import { faker } from "@faker-js/faker/locale/en";
 import { z } from "zod";
 
 import { URL_API } from "@/constants";
-import { movieGenresResponseSchema } from "../../movie-model";
+import { movieGenresResponseSchema } from "../movie-model";
 
 export function generateFakeCategories() {
   faker.seed(10);

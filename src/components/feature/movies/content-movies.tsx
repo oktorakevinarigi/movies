@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import { getGenre } from "@/utils";
 import { ULR_IMAGE, API_KEY } from "@/constants";
 import { Spinner } from "../../general";
-import { useGetInfiniteMovieDiscover, useGetMovieGenres } from "../movie-queries";
+import { useGetInfiniteMovieDiscover, useGetMovieGenres } from "./movie-queries";
 import { Card } from "./card";
 
 export function ContentMovies() {

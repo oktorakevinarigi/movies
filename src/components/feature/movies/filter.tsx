@@ -2,7 +2,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { queryToString } from "@/utils";
 import { API_KEY } from "@/constants";
-import { useGetMovieGenres } from "../movie-queries";
+import { useGetMovieGenres } from "./movie-queries";
 // const dataSort = [
 //   {
 //     name: "Popularity Ascending",

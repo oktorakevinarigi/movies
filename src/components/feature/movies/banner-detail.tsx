@@ -3,8 +3,8 @@ import Image from "next/image";
 import { useParams } from "next/navigation";
 
 import { ULR_IMAGE, API_KEY } from "@/constants";
-import { IconStar } from "../user-interfaces";
-import { SimpleBlock } from "../layouts";
+import { IconStar } from "../../user-interfaces";
+import { SimpleBlock } from "../../layouts/simple-block";
 import { useGetMovieDetail } from "./movie-queries";
 
 function Divider() {

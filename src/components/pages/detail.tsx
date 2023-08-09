@@ -1,7 +1,12 @@
 import { Header, Footer, SimpleBlock } from "@/components/layouts";
 import { BannerDetail, Review, Recommendation } from "../feature";
 
-export function DetailPage() {
+type DetailPageProps = {
+  id: string;
+};
+
+export function DetailPage(props: DetailPageProps) {
+  const { id } = props;
   return (
     <>
       <Header />
@@ -12,7 +17,7 @@ export function DetailPage() {
         </SimpleBlock>
       </div>
       <SimpleBlock className="my-[50px]">
-        <Recommendation />
+        <Recommendation id={id} />
       </SimpleBlock>
       <Footer />
     </>

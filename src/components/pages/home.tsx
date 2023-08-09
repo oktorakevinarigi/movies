@@ -1,5 +1,5 @@
 import { Header, Footer, Sidebar } from "@/components/layouts";
-import { Banner, TopRate, NowPlaying } from "../feature";
+import { BannerMovie, TopRate, NowPlaying } from "../feature";
 
 export function HomePage() {
   return (
@@ -9,7 +9,9 @@ export function HomePage() {
       </div>
       <div className="md:ml-[229px]">
         <Header />
-        <Banner />
+        <div className="my-8 w-full px-5 sm:px-0">
+          <BannerMovie />
+        </div>
         <div className="mb-10 flex flex-col gap-[18px] px-5 sm:px-10">
           <TopRate />
           <NowPlaying />

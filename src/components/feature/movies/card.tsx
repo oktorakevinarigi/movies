@@ -1,9 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
+import { fadeIn } from "@/utils";
 import { IconStar } from "../../user-interfaces";
 
 type CardProps = {
+  index?: number;
   id: number;
   urlImage: string;
   title: string;
@@ -13,10 +16,10 @@ type CardProps = {
 };
 
 export function Card(props: CardProps) {
-  const { id, urlImage, title, year, ratings, genre } = props;
+  const { index, id, urlImage, title, year, ratings, genre } = props;
 
   return (
-    <>
+    <motion.div variants={fadeIn("right", "spring", index ? index * 0.5 : 0, 0.75)}>
       <div className="group relative mb-3 h-[330px] overflow-hidden rounded-xl">
         <Image
           src={urlImage || "/images/no-images.jpg"}
@@ -50,6 +53,6 @@ export function Card(props: CardProps) {
 
       <p className="line-clamp-2 font-semibold text-white">{title}</p>
       <p className="text-sm text-[#707070]">{year}</p>
-    </>
+    </motion.div>
   );
 }

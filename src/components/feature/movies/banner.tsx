@@ -8,13 +8,13 @@ import dayjs from "dayjs";
 import { getGenre } from "@/utils";
 import { ULR_IMAGE, API_KEY } from "@/constants";
 import { YoutubeSection } from "@/components/general";
-import { Carousel } from "../user-interfaces";
+import { Carousel } from "../../user-interfaces";
 import { useGetMoviePopular, useGetMovieGenres, useGetMovieVideos } from "./movie-queries";
 const Modal = dynamic(() => import("@/components/user-interfaces").then(m => m.Modal), {
   ssr: false,
 });
 
-export function Banner() {
+export function BannerMovie() {
   const [modal, setModal] = useState({ visible: false, movieId: "" });
   const router = useRouter();
   const query = { api_key: API_KEY, language: "en-US", page: "1", region: "" };
@@ -38,7 +38,7 @@ export function Banner() {
   }
 
   return (
-    <div className="my-8 w-full px-5 sm:px-0">
+    <>
       <Carousel
         slides={getMoviePopular.data?.results.slice(0, 6) || []}
         options={{ loop: true }}
@@ -96,6 +96,6 @@ export function Banner() {
           />
         </Modal>
       )}
-    </div>
+    </>
   );
 }

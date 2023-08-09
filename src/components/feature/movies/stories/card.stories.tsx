@@ -10,7 +10,6 @@ const meta = {
 export default meta;
 type CardMoviesStory = StoryObj<typeof meta>;
 
-// More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Desktop: CardMoviesStory = {
   render: args => (
     <div className="w-[250px]">
