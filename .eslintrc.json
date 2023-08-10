@@ -6,7 +6,9 @@
     "plugin:import/recommended",
     "plugin:sonarjs/recommended",
     "prettier",
-    "plugin:storybook/recommended"
+    "plugin:storybook/recommended",
+    "plugin:testing-library/react",
+    "plugin:jest-dom/recommended"
   ],
   "plugins": ["sonarjs", "prettier"],
   "rules": {
@@ -44,6 +46,6 @@
     ]
   },
   "settings": {
-    "import/ignore": ["@tanstack/react-query"]
+    "import/ignore": ["@tanstack/react-query", "@testing-library/react"]
   }
 }

@@ -7,10 +7,22 @@ import type { Meta, StoryObj } from "@storybook/react";
 const meta = {
   title: "Features / Movies / Card",
   component: Card,
+  parameters: {
+    jest: ["card.test.tsx"],
+  },
 } satisfies Meta<typeof Card>;
 
 export default meta;
 type CardMoviesStory = StoryObj<typeof meta>;
+
+export const PropsCard = {
+  genre: "Action",
+  id: 238,
+  ratings: 8.7,
+  title: "The Godfather",
+  urlImage: ULR_IMAGE + "rSPw7tgCH9c6NqICZef4kZjFOQ5.jpg",
+  year: "1972",
+};
 
 export const Desktop: CardMoviesStory = {
   render: args => (
@@ -18,14 +30,7 @@ export const Desktop: CardMoviesStory = {
       <Card {...args} />
     </div>
   ),
-  args: {
-    genre: "Action",
-    id: 238,
-    ratings: 8.7,
-    title: "The Godfather",
-    urlImage: ULR_IMAGE + "rSPw7tgCH9c6NqICZef4kZjFOQ5.jpg",
-    year: "1972",
-  },
+  args: PropsCard,
   play: async () => {
     const titleElement = await screen.findByText("The Godfather");
     expect(titleElement).toBeInTheDocument();
