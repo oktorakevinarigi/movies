@@ -77,67 +77,86 @@ This documentation page [references](https://tailwindcss.com/docs/customizing-co
 
 ## Typography
 
-- `font-size`
+- `Font Size | font-size`
 This documentation page [references](https://tailwindcss.com/docs/font-size)
 
-```js
-export default {
-  "text-xs": {
-    "font-size": "0.75rem"; /* 12px */
-    "line-height": "1rem"; /* 16px */
-  },
-  "text-sm": {
-    "font-size": "0.875rem"; /* 14px */
-    "line-height": "1.25rem"; /* 20px */
-  },
-  "text-base": {
-    "font-size": "1rem"; /* 16px */
-    "line-height": "1.5rem"; /* 24px */
-  },
-  "text-lg": {
-    "font-size": "1.125rem"; /* 18px */
-    "line-height": "1.75rem"; /* 28px */
-  },
-  "text-xl": {
-    "font-size": "1.25rem"; /* 20px */
-    "line-height": "1.75rem"; /* 28px */
-  },
-  "text-2xl": {
-    "font-size": "1.5rem"; /* 24px */
-    "line-height": "2rem"; /* 32px */
-  },
-  "text-3xl": {
-    "font-size": "1.875rem"; /* 30px */
-    "line-height": "2.25rem"; /* 36px */
-  },
-  "text-4xl": {
-    "font-size": "2.25rem"; /* 36px */
-    "line-height": "2.5rem"; /* 40px */
-  },
-  "text-5xl": {
-    "font-size": "3rem"; /* 48px */
-    "line-height": "1";
-  },
-  "text-6xl": {
-    "font-size": "3.75rem"; /* 60px */
-    "line-height": "1";
-  },
-  "text-7xl": {
-    "font-size": "4.5rem"; /* 72px */
-    "line-height": "1";
-  },
-  "text-8xl": {
-    "font-size": "6rem"; /* 96px */
-    "line-height": "1";
-  },
-  "text-9xl": {
-    "font-size": "8rem"; /* 128px */
-    "line-height": "1";
-  },
-};
-```
+| Name      | font-size             | line-heigt           |
+| --------- | --------------------- | -------------------- |
+| text-xs   | 0.75rem `/* 12px */`  | 1rem `/* 16px */`    |
+| text-sm   | 0.875rem `/* 14px */` | 1.25rem `/* 20px */` |
+| text-base | 1rem `/* 16px */`     | 1.5rem `/* 24px */`  |
+| text-lg   | 1.125rem `/* 18px */` | 1.75rem `/* 28px */` |
+| text-xl   | 1.25rem `/* 20px */`  | 1.75rem `/* 28px */` |
+| text-2xl  | 1.5rem `/* 24px */`   | 2rem `/* 32px */`    |
+| text-3xl  | 1.875rem `/* 30px */` | 2.25rem `/* 36px */` |
+| text-4xl  | 2.25rem `/* 36px */`  | 2.5rem `/* 40px */`  |
+| text-5xl  | 3rem `/* 48px */`     | 1                    |
+| text-6xl  | 3.75rem `/* 60px */`  | 1                    |
+| text-7xl  | 4.5rem `/* 72px */`   | 1                    |
+| text-8xl  | 6rem `/* 96px */`     | 1                    |
+| text-9xl  | 8rem `/* 128px */`    | 1                    |
+
+- `Font Weight | font-weight`
+This documentation page [references](https://tailwindcss.com/docs/font-weight)
+
+| Name            | Properties        |
+| --------------- | ----------------- |
+| font-thin       | font-weight: 100  |
+| font-extralight | font-weight: 200  |
+| font-light      | font-weight: 300  |
+| font-normal     | font-weight: 400  |
+| font-medium     | font-weight: 500  |
+| font-semibold   | font-weight: 600  |
+| font-bold       | font-weight: 700  |
+| font-extrabold  | font-weight: 800  |
+| font-black      | font-weight: 900  |
+
+- `Line Height | line-height`
+This documentation page [references](https://tailwindcss.com/docs/line-height)
+
+| Name            | Space                | Pixels |
+| --------------- | -------------------- | ------ |
+| leading-3       | line-height: .75rem  | 12px   |
+| leading-4       | line-height: 1rem    | 16px   |
+| leading-5       | line-height: 1.25rem | 20px   |
+| leading-6       | line-height: 1.5rem  | 24px   |
+| leading-7       | line-height: 1.75rem | 28px   |
+| leading-8       | line-height: 2rem    | 32px   |
+| leading-9       | line-height: 2.25rem | 36px   |
+| leading-10      | line-height: 2.5rem  | 40px   |
+| leading-none    | line-height: 1       | -      |
+| leading-tight   | line-height: 1.25    | -      | 
+| leading-snug    | line-height: 1.375   | -      |
+| leading-normal  | line-height: 1.5     | -      |
+| leading-relaxed | line-height: 1.625   | -      |
+| leading-loose   | line-height: 2       | -      |
+
+- `Letter Spacing | letter-spacing`
+This documentation page [references](https://tailwindcss.com/docs/letter-spacing)
+
+| Name              | Properties               |
+| ----------------- | ------------------------ |
+| tracking-tighter  | letter-spacing: -0.05em  |
+| tracking-tight    | letter-spacing: -0.025em |
+| tracking-normal   | letter-spacing: 0em      |
+| tracking-wide     | letter-spacing: 0.025em  |
+| tracking-wider    | letter-spacing: 0.05em   |
+| tracking-widest   | letter-spacing: 0.1em    |
+
+
+## Breakpoints
+This documentation page [references](https://tailwindcss.com/docs/responsive-design)
+
+| Name  | Pixels  | CSS                        |
+| ----- | ------- | -------------------------- |
+| sm    | 640px   | @media (min-width: 640px)  |
+| md    | 768px   | @media (min-width: 768px)  |
+| lg    | 1024px  | @media (min-width: 1024px) |
+| xl    | 1280px  | @media (min-width: 1280px) |
+| 2xl   | 1536px  | @media (min-width: 1536px) |
 
 ## Spacing
+This documentation page [references](https://tailwindcss.com/docs/width)
 
 | Name     | Space       | Pixels |                                             |
 | -------- | ----------- | ------ | ------------------------------------------- |
@@ -208,3 +227,159 @@ export default {
 | w-min    | min-content | -      | <div className="bg-pink-200 h-4 w-min" />   |
 | w-max    | max-content | -      | <div className="bg-pink-200 h-4 w-max" />   |
 | w-fit    | fit-content | -      | <div className="bg-pink-200 h-4 w-fit" />   |
+
+## Border radius
+This documentation page [references](https://tailwindcss.com/docs/border-radius)
+
+| Name            | Space                                                                                         |
+| --------------- | --------------------------------------------------------------------------------------------- |
+| w-0             | 0px                                                                                           |
+| w-px            | 1px                                                                                           |
+| rounded-none	  | border-radius: 0px;                                                                           |
+| rounded-sm	    | border-radius: 0.125rem; /* 2px */                                                            |
+| rounded	        | border-radius: 0.25rem; /* 4px */                                                             |
+| rounded-md	    | border-radius: 0.375rem; /* 6px */                                                            |
+| rounded-lg	    | border-radius: 0.5rem; /* 8px */                                                              |
+| rounded-xl	    | border-radius: 0.75rem; /* 12px */                                                            |
+| rounded-2xl	    | border-radius: 1rem; /* 16px */                                                               |
+| rounded-3xl	    | border-radius: 1.5rem; /* 24px */                                                             |
+| rounded-full	  | border-radius: 9999px;                                                                        |
+| rounded-s-none	| border-start-start-radius: 0px; border-end-start-radius: 0px;                                 |
+| rounded-s-sm	  | border-start-start-radius: 0.125rem; /* 2px */ border-end-start-radius: 0.125rem; /* 2px */   |
+| rounded-s	      | border-start-start-radius: 0.25rem; /* 4px */ border-end-start-radius: 0.25rem; /* 4px */     |
+| rounded-s-md	  | border-start-start-radius: 0.375rem; /* 6px */ border-end-start-radius: 0.375rem; /* 6px */   |
+| rounded-s-lg	  | border-start-start-radius: 0.5rem; /* 8px */ border-end-start-radius: 0.5rem; /* 8px */       |
+| rounded-s-xl	  | border-start-start-radius: 0.75rem; /* 12px */ border-end-start-radius: 0.75rem; /* 12px */   |
+| rounded-s-2xl	  | border-start-start-radius: 1rem; /* 16px */ border-end-start-radius: 1rem; /* 16px */         |
+| rounded-s-3xl	  | border-start-start-radius: 1.5rem; /* 24px */ border-end-start-radius: 1.5rem; /* 24px */     |
+| rounded-s-full	| border-start-start-radius: 9999px; border-end-start-radius: 9999px;                           |
+| rounded-e-none	| border-start-end-radius: 0px; border-end-end-radius: 0px;                                     |
+| rounded-e-sm	  | border-start-end-radius: 0.125rem; /* 2px */ border-end-end-radius: 0.125rem; /* 2px */       |
+| rounded-e	      | border-start-end-radius: 0.25rem; /* 4px */ border-end-end-radius: 0.25rem; /* 4px */         |
+| rounded-e-md	  | border-start-end-radius: 0.375rem; /* 6px */ border-end-end-radius: 0.375rem; /* 6px */       |
+| rounded-e-lg	  | border-start-end-radius: 0.5rem; /* 8px */ border-end-end-radius: 0.5rem; /* 8px */           |
+| rounded-e-xl	  | border-start-end-radius: 0.75rem; /* 12px */ border-end-end-radius: 0.75rem; /* 12px */       |
+| rounded-e-2xl	  | border-start-end-radius: 1rem; /* 16px */ border-end-end-radius: 1rem; /* 16px */             |
+| rounded-e-3xl	  | border-start-end-radius: 1.5rem; /* 24px */ border-end-end-radius: 1.5rem; /* 24px */         |
+| rounded-e-full	| border-start-end-radius: 9999px; border-end-end-radius: 9999px;                               |
+| rounded-t-none	| border-top-left-radius: 0px; border-top-right-radius: 0px;                                    |
+| rounded-t-sm	  | border-top-left-radius: 0.125rem; /* 2px */ border-top-right-radius: 0.125rem; /* 2px */      |
+| rounded-t	      | border-top-left-radius: 0.25rem; /* 4px */ border-top-right-radius: 0.25rem; /* 4px */        |
+| rounded-t-md	  | border-top-left-radius: 0.375rem; /* 6px */ border-top-right-radius: 0.375rem; /* 6px */      |
+| rounded-t-lg	  | border-top-left-radius: 0.5rem; /* 8px */ border-top-right-radius: 0.5rem; /* 8px */          |
+| rounded-t-xl	  | border-top-left-radius: 0.75rem; /* 12px */ border-top-right-radius: 0.75rem; /* 12px */      |
+| rounded-t-2xl	  | border-top-left-radius: 1rem; /* 16px */ border-top-right-radius: 1rem; /* 16px */            |
+| rounded-t-3xl	  | border-top-left-radius: 1.5rem; /* 24px */ border-top-right-radius: 1.5rem; /* 24px */        |
+| rounded-t-full	| border-top-left-radius: 9999px; border-top-right-radius: 9999px;                              |
+| rounded-r-none	| border-top-right-radius: 0px; border-bottom-right-radius: 0px;                                |
+| rounded-r-sm	  | border-top-right-radius: 0.125rem; /* 2px */ border-bottom-right-radius: 0.125rem; /* 2px */  |
+| rounded-r	      | border-top-right-radius: 0.25rem; /* 4px */ border-bottom-right-radius: 0.25rem; /* 4px */    |
+| rounded-r-md	  | border-top-right-radius: 0.375rem; /* 6px */ border-bottom-right-radius: 0.375rem; /* 6px */  |
+| rounded-r-lg	  | border-top-right-radius: 0.5rem; /* 8px */ border-bottom-right-radius: 0.5rem; /* 8px */      |
+| rounded-r-xl	  | border-top-right-radius: 0.75rem; /* 12px */ border-bottom-right-radius: 0.75rem; /* 12px */  |
+| rounded-r-2xl	  | border-top-right-radius: 1rem; /* 16px */ border-bottom-right-radius: 1rem; /* 16px */        |
+| rounded-r-3xl	  | border-top-right-radius: 1.5rem; /* 24px */ border-bottom-right-radius: 1.5rem; /* 24px */    |
+| rounded-r-full	| border-top-right-radius: 9999px; border-bottom-right-radius: 9999px;                          |
+| rounded-b-none	| border-bottom-right-radius: 0px; border-bottom-left-radius: 0px;                              |
+| rounded-b-sm	  | border-bottom-right-radius: 0.125rem; /* 2px */ border-bottom-left-radius: 0.125rem; /* 2px */|
+| rounded-b	      | border-bottom-right-radius: 0.25rem; /* 4px */ border-bottom-left-radius: 0.25rem; /* 4px */  |
+| rounded-b-md	  | border-bottom-right-radius: 0.375rem; /* 6px */ border-bottom-left-radius: 0.375rem; /* 6px */|
+| rounded-b-lg	  | border-bottom-right-radius: 0.5rem; /* 8px */ border-bottom-left-radius: 0.5rem; /* 8px */    |
+| rounded-b-xl	  | border-bottom-right-radius: 0.75rem; /* 12px */ border-bottom-left-radius: 0.75rem; /* 12px */|
+| rounded-b-2xl	  | border-bottom-right-radius: 1rem; /* 16px */ border-bottom-left-radius: 1rem; /* 16px */      |
+| rounded-b-3xl	  | border-bottom-right-radius: 1.5rem; /* 24px */ border-bottom-left-radius: 1.5rem; /* 24px */  |
+| rounded-b-full	| border-bottom-right-radius: 9999px; border-bottom-left-radius: 9999px;                        |
+| rounded-l-none	| border-top-left-radius: 0px; border-bottom-left-radius: 0px;                                  |
+| rounded-l-sm	  | border-top-left-radius: 0.125rem; /* 2px */ border-bottom-left-radius: 0.125rem; /* 2px */    |
+| rounded-l	      | border-top-left-radius: 0.25rem; /* 4px */ border-bottom-left-radius: 0.25rem; /* 4px */      |
+| rounded-l-md	  | border-top-left-radius: 0.375rem; /* 6px */ border-bottom-left-radius: 0.375rem; /* 6px */    |
+| rounded-l-lg	  | border-top-left-radius: 0.5rem; /* 8px */ border-bottom-left-radius: 0.5rem; /* 8px */        |
+| rounded-l-xl	  | border-top-left-radius: 0.75rem; /* 12px */ border-bottom-left-radius: 0.75rem; /* 12px */    |
+| rounded-l-2xl	  | border-top-left-radius: 1rem; /* 16px */ border-bottom-left-radius: 1rem; /* 16px */          |
+| rounded-l-3xl	  | border-top-left-radius: 1.5rem; /* 24px */ border-bottom-left-radius: 1.5rem; /* 24px */      |
+| rounded-l-full	| border-top-left-radius: 9999px; border-bottom-left-radius: 9999px;                            |
+| rounded-ss-none	| border-start-start-radius: 0px;                                                               |
+| rounded-ss-sm	  | border-start-start-radius: 0.125rem; /* 2px */                                                |
+| rounded-ss	    | border-start-start-radius: 0.25rem; /* 4px */                                                 |
+| rounded-ss-md	  | border-start-start-radius: 0.375rem; /* 6px */                                                |
+| rounded-ss-lg	  | border-start-start-radius: 0.5rem; /* 8px */                                                  |
+| rounded-ss-xl	  | border-start-start-radius: 0.75rem; /* 12px */                                                |
+| rounded-ss-2xl	| border-start-start-radius: 1rem; /* 16px */                                                   |
+| rounded-ss-3xl	| border-start-start-radius: 1.5rem; /* 24px */                                                 |
+| rounded-ss-full |	border-start-start-radius: 9999px;                                                            |
+| rounded-se-none	| border-start-end-radius: 0px;                                                                 |
+| rounded-se-sm	  | border-start-end-radius: 0.125rem; /* 2px */                                                  |
+| rounded-se	    | border-start-end-radius: 0.25rem; /* 4px */                                                   |
+| rounded-se-md	  | border-start-end-radius: 0.375rem; /* 6px */                                                  |
+| rounded-se-lg	  | border-start-end-radius: 0.5rem; /* 8px */                                                    |
+| rounded-se-xl	  | border-start-end-radius: 0.75rem; /* 12px */                                                  |
+| rounded-se-2xl	| border-start-end-radius: 1rem; /* 16px */                                                     |
+| rounded-se-3xl	| border-start-end-radius: 1.5rem; /* 24px */                                                   |
+| rounded-se-full	| border-start-end-radius: 9999px;                                                              |
+| rounded-ee-none	| border-end-end-radius: 0px;                                                                   |
+| rounded-ee-sm	  | border-end-end-radius: 0.125rem; /* 2px */                                                    |
+| rounded-ee	    | border-end-end-radius: 0.25rem; /* 4px */                                                     |
+| rounded-ee-md	  | border-end-end-radius: 0.375rem; /* 6px */                                                    |
+| rounded-ee-lg	  | border-end-end-radius: 0.5rem; /* 8px */                                                      |
+| rounded-ee-xl	  | border-end-end-radius: 0.75rem; /* 12px */                                                    |
+| rounded-ee-2xl	| border-end-end-radius: 1rem; /* 16px */                                                       |
+| rounded-ee-3xl	| border-end-end-radius: 1.5rem; /* 24px */                                                     |
+| rounded-ee-full	| border-end-end-radius: 9999px;                                                                |
+| rounded-es-none	| border-end-start-radius: 0px;                                                                 |
+| rounded-es-sm	  | border-end-start-radius: 0.125rem; /* 2px */                                                  |
+| rounded-es	    | border-end-start-radius: 0.25rem; /* 4px */                                                   |
+| rounded-es-md	  | border-end-start-radius: 0.375rem; /* 6px */                                                  |
+| rounded-es-lg	  | border-end-start-radius: 0.5rem; /* 8px */                                                    |
+| rounded-es-xl	  | border-end-start-radius: 0.75rem; /* 12px */                                                  |
+| rounded-es-2xl	| border-end-start-radius: 1rem; /* 16px */                                                     |
+| rounded-es-3xl	| border-end-start-radius: 1.5rem; /* 24px */                                                   |
+| rounded-es-full	| border-end-start-radius: 9999px;                                                              |
+| rounded-tl-none	| border-top-left-radius: 0px;                                                                  |
+| rounded-tl-sm	  | border-top-left-radius: 0.125rem; /* 2px */                                                   |
+| rounded-tl	    | border-top-left-radius: 0.25rem; /* 4px */                                                    |
+| rounded-tl-md	  | border-top-left-radius: 0.375rem; /* 6px */                                                   |
+| rounded-tl-lg	  | border-top-left-radius: 0.5rem; /* 8px */                                                     |
+| rounded-tl-xl	  | border-top-left-radius: 0.75rem; /* 12px */                                                   |
+| rounded-tl-2xl	| border-top-left-radius: 1rem; /* 16px */                                                      |
+| rounded-tl-3xl	| border-top-left-radius: 1.5rem; /* 24px */                                                    |
+| rounded-tl-full	| border-top-left-radius: 9999px;                                                               |
+| rounded-tr-none	| border-top-right-radius: 0px;                                                                 |
+| rounded-tr-sm	  | border-top-right-radius: 0.125rem; /* 2px */                                                  |
+| rounded-tr	    | border-top-right-radius: 0.25rem; /* 4px */                                                   |
+| rounded-tr-md	  | border-top-right-radius: 0.375rem; /* 6px */                                                  |
+| rounded-tr-lg	  | border-top-right-radius: 0.5rem; /* 8px */                                                    |
+| rounded-tr-xl	  | border-top-right-radius: 0.75rem; /* 12px */                                                  |
+| rounded-tr-2xl	| border-top-right-radius: 1rem; /* 16px */                                                     |
+| rounded-tr-3xl	| border-top-right-radius: 1.5rem; /* 24px */                                                   |
+| rounded-tr-full	| border-top-right-radius: 9999px;                                                              |
+| rounded-br-none	| border-bottom-right-radius: 0px;                                                              |
+| rounded-br-sm	  | border-bottom-right-radius: 0.125rem; /* 2px */                                               |
+| rounded-br	    | border-bottom-right-radius: 0.25rem; /* 4px */                                                |
+| rounded-br-md	  | border-bottom-right-radius: 0.375rem; /* 6px */                                               |
+| rounded-br-lg	  | border-bottom-right-radius: 0.5rem; /* 8px */                                                 |
+| rounded-br-xl	  | border-bottom-right-radius: 0.75rem; /* 12px */                                               |
+| rounded-br-2xl	| border-bottom-right-radius: 1rem; /* 16px */                                                  |
+| rounded-br-3xl	| border-bottom-right-radius: 1.5rem; /* 24px */                                                |
+| rounded-br-full	| border-bottom-right-radius: 9999px;                                                           |
+| rounded-bl-none	| border-bottom-left-radius: 0px;                                                               |
+| rounded-bl-sm	  | border-bottom-left-radius: 0.125rem; /* 2px */                                                |
+| rounded-bl	    | border-bottom-left-radius: 0.25rem; /* 4px */                                                 |
+| rounded-bl-md	  | border-bottom-left-radius: 0.375rem; /* 6px */                                                |
+| rounded-bl-lg	  | border-bottom-left-radius: 0.5rem; /* 8px */                                                  |
+| rounded-bl-xl 	| border-bottom-left-radius: 0.75rem; /* 12px */                                                |
+| rounded-bl-2xl	| border-bottom-left-radius: 1rem; /* 16px */                                                   |
+| rounded-bl-3xl	| border-bottom-left-radius: 1.5rem; /* 24px */                                                 |
+| rounded-bl-full	| border-bottom-left-radius: 9999px;                                                            |
+
+## Z-Index
+This documentation page [references](https://tailwindcss.com/docs/z-index)
+
+| Name  | Properties     |
+| ----- | -------------- |
+| z-0   | z-index: 0;    |
+| z-10  | z-index: 10;   |
+| z-20  | z-index: 20;   |
+| z-30  | z-index: 30;   |
+| z-40  | z-index: 40;   |
+| z-50  | z-index: 50;   |
+| z-auto| z-index: auto; |
