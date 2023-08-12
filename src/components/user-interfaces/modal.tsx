@@ -36,7 +36,7 @@ export function Modal(props: ModalProps) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md transform rounded-2xl text-left align-middle transition-all">
+              <Dialog.Panel className="transform rounded-2xl text-left align-middle transition-all">
                 {children}
               </Dialog.Panel>
             </Transition.Child>

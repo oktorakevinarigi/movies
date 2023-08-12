@@ -48,7 +48,7 @@ export function BannerMovie() {
             onClick={() => {
               onDetail(slide.id.toString());
             }}
-            className="flex h-[281] w-full cursor-pointer overflow-hidden rounded-[20px] bg-black sm:ml-10 sm:h-[281px] sm:w-[500px] lg:h-[281px] lg:w-[704px]"
+            className="flex h-[290px] w-full cursor-pointer overflow-hidden rounded-[20px] bg-black sm:ml-10 sm:h-[281px] sm:w-[500px] lg:h-[281px] lg:w-[704px]"
           >
             <div className="flex flex-1 flex-col justify-between p-6">
               <div>

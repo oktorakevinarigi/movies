@@ -23,6 +23,7 @@ export const movieResponseSchema = z.object({
   total_pages: z.number(),
   total_results: z.number(),
 });
+export type IMovieResponseSchema = z.infer<typeof movieResponseSchema>;
 
 export const movieDetailResponseSchema = z.object({
   adult: z.boolean(),
@@ -109,6 +110,7 @@ export const movieSearchResponseSchema = z.object({
 export const movieGenresResponseSchema = z.object({
   genres: z.object({ id: z.number(), name: z.string() }).array(),
 });
+export type IMovieGenresResponseSchema = z.infer<typeof movieGenresResponseSchema>;
 
 export const movieRecommendationsResponseSchema = z.object({
   page: z.number(),
