@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { IconMovie, HomeIcon, MovieIcon } from "@/components/user-interfaces";
 import { InterFont } from "@/theme/typography";
-import { CategoriesMovie } from "../feature/movies";
+import { CategoriesMovie } from "../features/movies";
 
 export function Sidebar() {
   return (

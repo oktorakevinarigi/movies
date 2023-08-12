@@ -1,5 +1,5 @@
 import { Header, Footer, SimpleBlock } from "@/components/layouts";
-import { ListMovies } from "../feature";
+import { ListMovies } from "../features";
 
 export function MoviesPage() {
   return (

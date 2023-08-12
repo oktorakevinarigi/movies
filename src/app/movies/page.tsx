@@ -7,7 +7,7 @@ import {
   getMovieGenres,
   getMovieDiscover,
   MovieDiscoverKeys,
-} from "@/components/feature";
+} from "@/components/features";
 import { MoviesPage } from "@/components/pages";
 import { API_KEY } from "@/constants";
 

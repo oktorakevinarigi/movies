@@ -7,7 +7,7 @@ import { useDebounce } from "@/utils";
 import { IconSearch, IconSearchMovie } from "@/components/user-interfaces";
 import { API_KEY } from "@/constants";
 
-import { useGetMovieSearch } from "../feature";
+import { useGetMovieSearch } from "../features";
 import { Spinner } from "./spinner";
 
 export function Header() {

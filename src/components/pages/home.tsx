@@ -1,5 +1,5 @@
 import { Header, Footer, Sidebar } from "@/components/layouts";
-import { BannerMovie, TopRate, NowPlaying } from "../feature";
+import { BannerMovie, TopRate, NowPlaying } from "../features";
 
 export function HomePage() {
   return (

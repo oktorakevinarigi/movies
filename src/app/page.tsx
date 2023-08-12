@@ -11,7 +11,7 @@ import {
   MovieNowPlayingKeys,
   getMovieTopRate,
   MovieTopRateKeys,
-} from "@/components/feature";
+} from "@/components/features";
 import { API_KEY } from "@/constants";
 
 export default async function Home() {

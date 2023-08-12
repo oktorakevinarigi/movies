@@ -10,7 +10,7 @@ import {
   getMovieGenres,
   MovieReviewsKeys,
   getMovieReviews,
-} from "@/components/feature";
+} from "@/components/features";
 import { DetailPage } from "@/components/pages";
 import { API_KEY } from "@/constants";
 

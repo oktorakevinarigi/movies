@@ -1,5 +1,5 @@
 import { Header, Footer, SimpleBlock } from "@/components/layouts";
-import { BannerDetail, Review, Recommendation } from "../feature";
+import { BannerDetail, Review, Recommendation } from "../features";
 
 type DetailPageProps = {
   id: string;
