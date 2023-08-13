@@ -44,7 +44,6 @@ export function BannerMovie() {
         options={{ loop: true }}
         renderSlide={({ slide }) => (
           <div
-            key={slide.id}
             onClick={() => {
               onDetail(slide.id.toString());
             }}

@@ -177,3 +177,4 @@ export const movieVideosResponseSchema = z.object({
     })
     .array(),
 });
+export type IMovieVideosResponseSchema = z.infer<typeof movieVideosResponseSchema>;

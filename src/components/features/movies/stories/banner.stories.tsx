@@ -1,5 +1,5 @@
 import { BannerMovie } from "../banner";
-import { getPopularFake, getGenresFake } from "../msw-handlers/popular-record";
+import { getPopularFake, getGenresFake, getVideosFake } from "../msw-handlers/popular-record";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
@@ -7,8 +7,9 @@ const meta = {
   component: BannerMovie,
   parameters: {
     msw: {
-      handlers: [getPopularFake, getGenresFake],
+      handlers: [getPopularFake, getGenresFake, getVideosFake],
     },
+    jest: ["banner.test.tsx"],
   },
 } satisfies Meta<typeof BannerMovie>;
 

@@ -3,7 +3,11 @@ import { faker } from "@faker-js/faker/locale/en";
 import dayjs from "dayjs";
 
 import { URL_API } from "@/constants";
-import { IMovieResponseSchema, IMovieGenresResponseSchema } from "../movie-model";
+import {
+  IMovieResponseSchema,
+  IMovieGenresResponseSchema,
+  IMovieVideosResponseSchema,
+} from "../movie-model";
 
 const perPage = 10;
 const total: number = Math.ceil(Math.random() * 100);
@@ -29,9 +33,9 @@ const genres = [
   },
 ];
 
-function generatePopularFake() {
+export function generatePopularFake() {
   faker.seed(10);
-  const results = Array.from(Array(10).keys()).map(() => {
+  const results = Array.from(Array(6).keys()).map(() => {
     return {
       adult: faker.datatype.boolean(),
       backdrop_path: "/rSPw7tgCH9c6NqICZef4kZjFOQ5.jpg",
@@ -63,9 +67,46 @@ export const getPopularFake = rest.get<never, never, IMovieResponseSchema>(
   },
 );
 
+export function generateGenreFake() {
+  return { genres };
+}
 export const getGenresFake = rest.get<never, never, IMovieGenresResponseSchema>(
   `${URL_API}/3/genre/movie/list`,
   (_, res, ctx) => {
-    return res(ctx.json({ genres }));
+    return res(ctx.json(generateGenreFake()));
+  },
+);
+
+export function generateVideosFake() {
+  faker.seed(10);
+  const results = Array.from(Array(6).keys()).map(() => {
+    return {
+      iso_639_1: "en" as const,
+      iso_3166_1: "US" as const,
+      name: faker.lorem.lines(1),
+      key: "OW1mU4vBBEU",
+      site: "YouTube" as const,
+      size: faker.number.int({ min: 1, max: 1000 }),
+      type: faker.helpers.enumValue({
+        behind: "Behind the Scenes",
+        clip: "Clip",
+        featurette: "Featurette",
+        teaser: "Teaser",
+        trailer: "Trailer",
+      }) as "Behind the Scenes" | "Clip" | "Featurette" | "Teaser" | "Trailer",
+      official: faker.datatype.boolean(),
+      published_at: faker.date.anytime().toISOString(),
+      id: faker.number.int({ min: 1, max: 1000 }).toString(),
+    };
+  });
+  return {
+    id: faker.number.int({ min: 1, max: 1000 }),
+    results,
+  };
+}
+export const getVideosFake = rest.get<never, never, IMovieVideosResponseSchema>(
+  `${URL_API}/3/movie/:id/videos`,
+  (_, res, ctx) => {
+    return res(ctx.json(generateVideosFake()));
   },
 );

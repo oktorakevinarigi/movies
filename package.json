@@ -71,6 +71,7 @@
     "@tanstack/eslint-plugin-query": "^4.32.5",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
     "@types/react-highlight-words": "^0.16.4",
     "@types/testing-library__jest-dom": "^5.14.9",
     "@typescript-eslint/eslint-plugin": "^6.2.1",
@@ -88,6 +89,7 @@
     "msw-storybook-addon": "^1.8.0",
     "prettier": "^3.0.1",
     "prettier-plugin-tailwindcss": "^0.4.1",
+    "resize-observer-polyfill": "^1.5.1",
     "storybook": "^7.2.2"
   },
   "msw": {
