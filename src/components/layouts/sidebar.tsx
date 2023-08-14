@@ -15,7 +15,7 @@ export function Sidebar() {
         <p className="text-sm font-light text-[#707070]">New feed</p>
         <Link href="/" className="flex items-center gap-3">
           <HomeIcon width="24px" height="24px" className="text-[#707070]" />
-          <p className={`${InterFont.className} text-xs font-medium text-white`}>Home</p>
+          <p className={`${InterFont.className} text-xs font-medium text-white`}>Homes</p>
         </Link>
         <Link href="/movies" className=" flex items-center gap-3">
           <MovieIcon width="24px" height="24px" className="text-[#707070]" />
