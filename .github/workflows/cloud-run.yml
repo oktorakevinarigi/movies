@@ -34,11 +34,11 @@ jobs:
 
       - name: Build and tag the docker image
         run: |-
-          docker build . --tag gcr.io/$PROJECT_ID/$REPO_NAME:1
+          docker build . --tag gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA
 
       - name: Push the image to the Google Container Registry (GCR)
         run: |-
-          docker push gcr.io/$PROJECT_ID/$REPO_NAME:1
+          docker push gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA
 
       - name: Deploy
         run: |-
