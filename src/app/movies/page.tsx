@@ -1,7 +1,8 @@
 import { dehydrate, Hydrate } from "@tanstack/react-query";
+import { headers } from "next/headers";
 
 import { getQueryClient } from "@/utils/query-client";
-import { fetchNode } from "@/utils";
+import { fetchNode, isMobileDevice } from "@/utils";
 import {
   MovieGenresKeys,
   getMovieGenres,
@@ -22,6 +23,8 @@ type MoviesProps = {
 export default async function Movies(props: MoviesProps) {
   const fetch = fetchNode();
   const queryClient = getQueryClient();
+  const userAgent = headers().get("user-agent");
+  const isMobile = isMobileDevice(userAgent || "");
 
   const queryDiscover = {
     api_key: API_KEY,
@@ -50,7 +53,7 @@ export default async function Movies(props: MoviesProps) {
 
   return (
     <Hydrate state={dehydratedState}>
-      <MoviesPage />
+      <MoviesPage isMobile={isMobile} />
     </Hydrate>
   );
 }

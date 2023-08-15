@@ -1,14 +1,16 @@
-import { Header, Footer, SimpleBlock } from "@/components/layouts";
-import { ListMovies } from "../features";
+import dynamic from "next/dynamic";
+const MoviesPageDesktop = dynamic(() => import("./movies-desktop").then(m => m.MoviesPageDesktop));
+const MoviesPageMobile = dynamic(() => import("./movies-mobile").then(m => m.MoviesPageMobile));
 
-export function MoviesPage() {
-  return (
-    <>
-      <Header />
-      <SimpleBlock className="py-14">
-        <ListMovies />
-      </SimpleBlock>
-      <Footer />
-    </>
-  );
+type MoviesPageProps = {
+  isMobile: boolean;
+};
+
+export function MoviesPage(props: MoviesPageProps) {
+  const { isMobile } = props;
+
+  if (isMobile) {
+    return <MoviesPageMobile />;
+  }
+  return <MoviesPageDesktop />;
 }
