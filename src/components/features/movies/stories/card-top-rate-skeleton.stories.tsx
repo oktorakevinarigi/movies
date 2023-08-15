@@ -9,7 +9,7 @@ const meta = {
 export default meta;
 type CardBannerSkeletonStory = StoryObj<typeof meta>;
 
-export const Desktop: CardBannerSkeletonStory = {
+export const Default: CardBannerSkeletonStory = {
   render: args => (
     <div>
       <CardTopRateSkeleton {...args} />

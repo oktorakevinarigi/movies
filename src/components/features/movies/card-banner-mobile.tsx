@@ -49,7 +49,7 @@ export function CardBannerMobile(props: CardBannerMobileProps) {
 export function CardBannerMobileSkeleton() {
   return (
     <div className="animate-pulse">
-      <div className="h-[290px] w-full rounded-[20px] bg-slate-200" />
+      <div className="h-[290px] max-w-[450px] rounded-[20px] bg-slate-200" />
     </div>
   );
 }

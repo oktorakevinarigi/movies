@@ -22,7 +22,7 @@ export const Desktop: CardBannerSkeletonStory = {
 
 export const Mobile: CardBannerSkeletonStory = {
   render: args => (
-    <div>
+    <div className="w-[360px]">
       <CardBannerSkeleton {...args} />
     </div>
   ),
