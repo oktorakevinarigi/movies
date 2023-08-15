@@ -1,7 +1,12 @@
+import { headers } from "next/headers";
 import { SidebarSkeleton } from "@/components/layouts";
 import { CardBannerSkeleton, CardTopRateSkeleton, CardSkeleton } from "@/components/features";
+import { isMobileDevice } from "@/utils";
 
 function Loading() {
+  const userAgent = headers().get("user-agent");
+  const isMobile = isMobileDevice(userAgent || "");
+
   return (
     <div>
       <div className="flex w-full">
@@ -14,7 +19,7 @@ function Loading() {
 
           <div className="my-8 flex">
             <div className="sm:ml-10">
-              <CardBannerSkeleton />
+              <CardBannerSkeleton isMobile={isMobile} />
             </div>
           </div>
           <div className="mb-10 flex flex-col gap-[18px] px-5 sm:px-10">

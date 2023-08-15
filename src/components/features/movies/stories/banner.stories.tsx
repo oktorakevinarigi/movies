@@ -22,4 +22,18 @@ export const Desktop: BannerMovieStory = {
       <BannerMovie {...args} />
     </div>
   ),
+  args: {
+    isMobile: false,
+  },
+};
+
+export const Mobile: BannerMovieStory = {
+  render: args => (
+    <div className="w-[450px]">
+      <BannerMovie {...args} />
+    </div>
+  ),
+  args: {
+    isMobile: true,
+  },
 };

@@ -17,6 +17,7 @@ export const Desktop: CardBannerStory = {
     </div>
   ),
   args: {
+    isMobile: false,
     date: "2022",
     genres: "Action",
     id: "238",
@@ -26,5 +27,17 @@ export const Desktop: CardBannerStory = {
     urlImage: ULR_IMAGE + "rSPw7tgCH9c6NqICZef4kZjFOQ5.jpg",
     onDetail: () => {},
     onWatch: () => {},
+  },
+};
+
+export const Mobile: CardBannerStory = {
+  render: args => (
+    <div className="w-[360px]">
+      <CardBanner {...args} />
+    </div>
+  ),
+  args: {
+    ...Desktop.args,
+    isMobile: true,
   },
 };

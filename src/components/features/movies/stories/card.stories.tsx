@@ -15,22 +15,20 @@ const meta = {
 export default meta;
 type CardMoviesStory = StoryObj<typeof meta>;
 
-export const PropsCard = {
-  genre: "Action",
-  id: 238,
-  ratings: 8.7,
-  title: "The Godfather",
-  urlImage: ULR_IMAGE + "rSPw7tgCH9c6NqICZef4kZjFOQ5.jpg",
-  year: "1972",
-};
-
-export const Desktop: CardMoviesStory = {
+export const Default: CardMoviesStory = {
   render: args => (
     <div className="w-[250px]">
       <Card {...args} />
     </div>
   ),
-  args: PropsCard,
+  args: {
+    genre: "Action",
+    id: 238,
+    ratings: 8.7,
+    title: "The Godfather",
+    urlImage: ULR_IMAGE + "rSPw7tgCH9c6NqICZef4kZjFOQ5.jpg",
+    year: "1972",
+  },
   play: async () => {
     const titleElement = await screen.findByText("The Godfather");
     expect(titleElement).toBeInTheDocument();

@@ -40,7 +40,7 @@ Object.defineProperty(window, "matchMedia", {
 
 describe("Banner", () => {
   it("should render 6 button, year, and image", async () => {
-    render(<BannerMovie />);
+    render(<BannerMovie isMobile={false} />);
     // Button
     const buttonElement = screen.getAllByRole("button");
     expect(buttonElement.length).toBe(6);
@@ -55,7 +55,7 @@ describe("Banner", () => {
   });
   it("should render Modal", async () => {
     event.setup();
-    render(<BannerMovie />);
+    render(<BannerMovie isMobile={false} />);
     const buttonElement = screen.getAllByRole("button");
     event.click(buttonElement[0]);
     const buttonPlayYoutube = await screen.findByLabelText("Watch Youtube Video");
