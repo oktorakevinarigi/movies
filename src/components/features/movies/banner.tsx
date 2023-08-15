@@ -35,7 +35,7 @@ export function BannerMovie(props: BannerMovieProps) {
   }
 
   function onDetail(id: string) {
-    router.push(`/${id}`);
+    router.push(`/movie/${id}`);
   }
 
   const newProps = {

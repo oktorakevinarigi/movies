@@ -38,7 +38,7 @@ export function Card(props: CardProps) {
           ) : null}
           <p className="px-2 text-center text-white">{genre}</p>
           <Link
-            href={`/${id}`}
+            href={`/movie/${id}`}
             className="cursor-pointer rounded-full bg-[#FF0000] px-8 py-2 text-sm font-bold text-white"
           >
             View

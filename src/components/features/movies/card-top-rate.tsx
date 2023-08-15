@@ -13,7 +13,7 @@ export function CardTopRate(props: CardTopRateProps) {
 
   return (
     <Link
-      href={`/${id}`}
+      href={`/movie/${id}`}
       className="flex min-h-[102px] w-[168px] min-w-[168px] flex-col gap-1 rounded-xl bg-[#343434] p-3"
     >
       <div className="relative h-[28px] w-[39px] overflow-hidden rounded-md">
