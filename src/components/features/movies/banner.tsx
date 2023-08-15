@@ -1,11 +1,14 @@
 "use client";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { API_KEY } from "@/constants";
 import { useGetMoviePopular, useGetMovieGenres, useGetMovieVideos } from "./movie-queries";
-import { BannerMovieDesktop } from "./banner-desktop";
-import { BannerMovieMobile } from "./banner-mobile";
+const BannerMovieDesktop = dynamic(() =>
+  import("./banner-desktop").then(m => m.BannerMovieDesktop),
+);
+const BannerMovieMobile = dynamic(() => import("./banner-mobile").then(m => m.BannerMovieMobile));
 
 type BannerMovieProps = {
   isMobile: boolean;
