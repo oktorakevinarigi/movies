@@ -42,15 +42,15 @@ describe("Banner", () => {
   it("should render 6 button, year, and image", async () => {
     render(<BannerMovie isMobile={false} />);
     // Button
-    const buttonElement = screen.getAllByRole("button");
+    const buttonElement = await screen.findAllByRole("button");
     expect(buttonElement.length).toBe(6);
 
     // Image
-    const imageElement = screen.getAllByRole("img");
+    const imageElement = await screen.findAllByRole("img");
     expect(imageElement.length).toBe(6);
 
     // Year
-    const paragraphElement = screen.getAllByText(/\b(19|20)\d{2}\b/);
+    const paragraphElement = await screen.findAllByText(/\b(19|20)\d{2}\b/);
     expect(paragraphElement.length).toBe(6);
   });
   it("should render Modal", async () => {
