@@ -65,9 +65,9 @@ export function Filter() {
 
   return (
     <div className="h-fit w-60 rounded-lg bg-gradient-to-b from-[#0E1723] to-transparent">
-      <p className="text-primary border-b border-white border-opacity-5 p-5 font-semibold">
+      {/* <p className="text-primary border-b border-white border-opacity-5 p-5 font-semibold">
         Sort Result By
-      </p>
+      </p> */}
       {/* <div className="px-5 pt-5 pb-[31px] border-b border-white border-opacity-5">
         <Select onValueChange={onSort} value={sort || undefined}>
           <SelectTrigger className="bg-white bg-opacity-[0.13] h-9 text-primary border-none text-sm text-left">
@@ -86,7 +86,7 @@ export function Filter() {
           </SelectContent>
         </Select>
       </div> */}
-      <p className="text-primary mb-[18px] border-b border-white border-opacity-5 p-5 font-semibold">
+      <p className="mb-[18px] border-b border-white border-opacity-5 p-5 font-semibold text-white">
         Genres
       </p>
       <div className="flex flex-col gap-4 px-5 pb-5">

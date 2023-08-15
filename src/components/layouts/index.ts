@@ -2,4 +2,4 @@ export { SimpleBlock } from "./simple-block";
 export { Header } from "./header";
 export { Footer } from "./footer";
 export { Spinner } from "./spinner";
-export { Sidebar } from "./sidebar";
+export { Sidebar, SidebarSkeleton } from "./sidebar";

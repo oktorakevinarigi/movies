@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -54,5 +55,15 @@ export function Card(props: CardProps) {
       <p className="line-clamp-2 font-semibold text-white">{title}</p>
       <p className="text-sm text-[#707070]">{year}</p>
     </motion.div>
+  );
+}
+
+export function CardSkeleton() {
+  return (
+    <div className="animate-pulse">
+      <div className="mb-3 h-[330px] rounded-xl bg-slate-200" />
+      <div className="mb-2 h-3 bg-slate-200" />
+      <div className="h-3 w-10 bg-slate-200" />
+    </div>
   );
 }

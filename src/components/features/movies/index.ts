@@ -6,6 +6,9 @@ export { Recommendation } from "./recommendation";
 export { BannerDetail } from "./banner-detail";
 export { Review } from "./review";
 export { TopRate } from "./top-rate";
+export { CardSkeleton, Card } from "./card";
+export { CardBanner, CardBannerSkeleton } from "./card-banner";
+export { CardTopRate, CardTopRateSkeleton } from "./card-top-rate";
 export {
   MovieGenresKeys,
   getMovieGenres,

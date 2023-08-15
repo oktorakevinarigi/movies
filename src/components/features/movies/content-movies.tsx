@@ -4,9 +4,8 @@ import dayjs from "dayjs";
 
 import { getGenre } from "@/utils";
 import { ULR_IMAGE, API_KEY } from "@/constants";
-import { Spinner } from "../../general";
 import { useGetInfiniteMovieDiscover, useGetMovieGenres } from "./movie-queries";
-import { Card } from "./card";
+import { Card, CardSkeleton } from "./card";
 
 export function ContentMovies() {
   const searchParams = useSearchParams();
@@ -29,6 +28,10 @@ export function ContentMovies() {
     getMovieDiscover.fetchNextPage();
   }
 
+  if (getMovieDiscover.isLoading || getMovieGenres.isLoading) {
+    return <CardSkeleton />;
+  }
+
   return (
     <div className="flex-1">
       <div className="grid grid-cols-[repeat(auto-fill,minmax(205px,1fr))] gap-5">
@@ -48,11 +51,17 @@ export function ContentMovies() {
             </div>
           ))}
       </div>
-      <div className="flex w-full flex-col justify-center">
-        {getMovieDiscover.isFetching ? <Spinner /> : null}
+      <div className="mt-5 flex w-full flex-col justify-center gap-5">
+        {getMovieDiscover.isFetching ? (
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(205px,1fr))] gap-5">
+            {Array.from(Array(4).keys()).map(key => (
+              <CardSkeleton key={key} />
+            ))}
+          </div>
+        ) : null}
         {getMovieDiscover.hasNextPage ? (
           <button
-            className="m-auto mt-5 w-[151px] rounded-full bg-[#F00] py-2 text-sm font-semibold text-white"
+            className="m-auto w-[151px] rounded-full bg-[#F00] py-2 text-sm font-semibold text-white"
             onClick={onLoadMore}
           >
             Load More

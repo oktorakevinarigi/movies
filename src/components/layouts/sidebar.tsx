@@ -27,3 +27,11 @@ export function Sidebar() {
     </div>
   );
 }
+
+export function SidebarSkeleton() {
+  return (
+    <div className="animate-pulse">
+      <div className="min-h-screen w-[229px] bg-slate-200" />
+    </div>
+  );
+}

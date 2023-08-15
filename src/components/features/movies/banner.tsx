@@ -2,7 +2,6 @@
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import Image from "next/image";
 import dayjs from "dayjs";
 
 import { getGenre } from "@/utils";
@@ -10,6 +9,7 @@ import { ULR_IMAGE, API_KEY } from "@/constants";
 import { YoutubeSection } from "@/components/general";
 import { Carousel } from "../../user-interfaces";
 import { useGetMoviePopular, useGetMovieGenres, useGetMovieVideos } from "./movie-queries";
+import { CardBanner } from "./card-banner";
 const Modal = dynamic(() => import("@/components/user-interfaces").then(m => m.Modal), {
   ssr: false,
 });
@@ -43,47 +43,17 @@ export function BannerMovie() {
         slides={getMoviePopular.data?.results.slice(0, 6) || []}
         options={{ loop: true }}
         renderSlide={({ slide }) => (
-          <div
-            onClick={() => {
-              onDetail(slide.id.toString());
-            }}
-            className="flex h-[290px] w-full cursor-pointer overflow-hidden rounded-[20px] bg-black sm:ml-10 sm:h-[281px] sm:w-[500px] lg:h-[281px] lg:w-[704px]"
-          >
-            <div className="flex flex-1 flex-col justify-between p-6">
-              <div>
-                <p className="mb-2 line-clamp-2 text-4xl font-bold text-white">{slide.title}</p>
-                <div className="mb-2 flex items-center gap-1 font-normal">
-                  <p className="text-xs text-white">
-                    {slide.release_date ? dayjs(slide.release_date).format("YYYY") : null}
-                  </p>
-                  <div className="h-[6px] w-[6px] rounded-full bg-white bg-opacity-50" />
-                  <p className="line-clamp-2 text-xs text-white">
-                    {getGenre(slide.genre_ids, getMovieGenres.data?.genres || [])}
-                  </p>
-                </div>
-                <p className="mb-4 line-clamp-4 text-xs font-light text-[#6A6A6A]">
-                  {slide.overview}
-                </p>
-              </div>
-              <button
-                onClick={e => {
-                  e.stopPropagation();
-                  onWatch(slide.id.toString());
-                }}
-                className="h-9 w-[97px] rounded-[10px] bg-[#F00F00] text-xl font-semibold text-white shadow-[1px_1px_14px_0px_#F00]"
-              >
-                Watch
-              </button>
-            </div>
-            <div className="relative hidden flex-[1.5] before:absolute before:inset-0 before:z-10 before:bg-gradient-to-r before:from-black before:from-[5%] before:to-transparent before:to-[95%] sm:block">
-              <Image
-                src={ULR_IMAGE + slide.poster_path}
-                alt={slide.title}
-                fill
-                style={{ objectFit: "cover", objectPosition: "center" }}
-                sizes="400px"
-              />
-            </div>
+          <div className="sm:ml-10">
+            <CardBanner
+              date={slide.release_date ? dayjs(slide.release_date).format("YYYY") : ""}
+              genres={getGenre(slide.genre_ids, getMovieGenres.data?.genres || [])}
+              id={slide.id.toString()}
+              overview={slide.overview}
+              title={slide.title}
+              urlImage={ULR_IMAGE + slide.poster_path}
+              onDetail={onDetail}
+              onWatch={onWatch}
+            />
           </div>
         )}
       />
