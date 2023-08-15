@@ -7,6 +7,9 @@ import { IconMovie, HomeIcon, MovieIcon } from "@/components/user-interfaces";
 import { InterFont } from "@/theme/typography";
 import { CategoriesMovie } from "../features/movies";
 
+const white = "text-white";
+const gray = "text-[#707070]";
+
 export function Sidebar() {
   const pathName = usePathname();
 
@@ -19,32 +22,24 @@ export function Sidebar() {
       <div className="mb-[36px] flex flex-col gap-6">
         <p className="text-sm font-light text-[#707070]">New feed</p>
         <Link href="/" className="flex items-center gap-3">
-          <HomeIcon
-            width="24px"
-            height="24px"
-            className={pathName === "/" ? "text-white" : "text-[#707070}"}
-          />
+          <HomeIcon width="24px" height="24px" className={pathName === "/" ? white : gray} />
           <p
             className={cn(
               "text-xs font-medium",
               InterFont.className,
-              pathName === "/" ? "font-semibold text-white" : "text-[#707070]",
+              pathName === "/" ? `font-semibold ${white}` : gray,
             )}
           >
             Home
           </p>
         </Link>
         <Link href="/movies" className=" flex items-center gap-3">
-          <MovieIcon
-            width="24px"
-            height="24px"
-            className={pathName === "/movies" ? "text-white" : "text-[#707070}"}
-          />
+          <MovieIcon width="24px" height="24px" className={pathName === "/movies" ? white : gray} />
           <p
             className={cn(
               "text-xs font-medium",
               InterFont.className,
-              pathName === "/movies" ? "font-semibold text-white" : "text-[#707070]",
+              pathName === "/movies" ? `font-semibold ${white}` : gray,
             )}
           >
             Movies

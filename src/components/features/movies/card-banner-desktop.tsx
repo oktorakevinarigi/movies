@@ -51,6 +51,7 @@ export function CardBannerDesktop(props: CardBannerDesktopProps) {
           fill
           style={{ objectFit: "cover", objectPosition: "center" }}
           sizes="400px"
+          priority
         />
       </div>
     </div>

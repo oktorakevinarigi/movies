@@ -14,7 +14,7 @@ function Desktop() {
             <div className="h-[104px] bg-slate-200 py-8" />
           </div>
 
-          <div className="my-8 flex">
+          <div className="my-8 flex h-[338px] w-full px-5">
             <CardBannerSkeleton isMobile={false} />
           </div>
           <div className="mb-10 flex flex-col gap-[18px] px-10">

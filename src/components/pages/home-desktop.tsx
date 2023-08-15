@@ -9,7 +9,7 @@ export function HomeDesktopPage() {
       </div>
       <div className="ml-[229px]">
         <Header />
-        <div className="my-8 w-full px-0">
+        <div className="my-8 h-[338px] w-full px-0">
           <BannerMovie isMobile={false} />
         </div>
         <div className="mb-10 flex flex-col gap-[18px] px-10">
