@@ -13,6 +13,15 @@ global.ResizeObserver = ResizeObserver;
 jest.mock("next/navigation", () => ({
   useRouter: jest.fn(),
 }));
+jest.mock("next/image", () => ({
+  __esModule: true,
+  default: (
+    props: JSX.IntrinsicAttributes &
+      React.ClassAttributes<HTMLImageElement> &
+      React.ImgHTMLAttributes<HTMLImageElement>,
+    // eslint-disable-next-line jsx-a11y/alt-text, @next/next/no-img-element
+  ) => <img {...props} />,
+}));
 jest.mock("../movie-queries", () => ({
   useGetMoviePopular: jest.fn().mockImplementation(() => ({
     data: generatePopularFake(),
