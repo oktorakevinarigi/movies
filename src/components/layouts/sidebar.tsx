@@ -4,7 +4,7 @@ import Link from "next/link";
 import { cn } from "@/utils";
 
 import { IconMovie, HomeIcon, MovieIcon } from "@/components/user-interfaces";
-import { InterFont } from "@/theme/typography";
+import { InterFont } from "@/styles/typography";
 import { CategoriesMovie } from "../features/movies";
 
 const white = "text-white";

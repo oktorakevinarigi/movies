@@ -1,6 +1,6 @@
 import "./globals.css";
 import { Providers } from "@/utils/react-query";
-import { PoppinsFont } from "@/theme/typography";
+import { PoppinsFont } from "@/styles/typography";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

@@ -1,4 +1,4 @@
-import { IColors, colors } from "@/theme/colors";
+import { IColors, colors } from "@/styles/colors";
 
 type PaletteProps = {
   name: IColors;

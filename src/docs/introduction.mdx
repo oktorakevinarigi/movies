@@ -19,35 +19,45 @@ The packages and apps source code in project strcuture seperti
 ```
   root
   ├── src
-  |   ├── app                             # Create pages
+  |   ├── app                                 # Directory all pages
   |   |   ├── example
-  |   |   |   └── page.tsx                # Initial name page with route /example
+  |   |   |   └── page.tsx
   |   |   |
-  |   |   ├── globals.css                 # Global Styles
-  |   |   ├── layout.tsx                  # Initial Layout
-  |   |   └── page.tsx                    # Page root 
+  |   |   ├── globals.css                     # Global Styles
+  |   |   ├── layout.tsx                      # Initial Layout
+  |   |   └── page.tsx                        # Page root 
   |   |
   |   ├── components           
   |   |   ├── features                        # Domain-specific features
   |   |   |   ├── feature-name
-  |   |   |   |   ├── stories                 # Docs-specific react components
+  |   |   |   |   ├── stories                 # Docs features react components
   |   |   |   |   |   └── c-n.stories.tsx     # Docs-specific react components
   |   |   |   |   |
-  |   |   |   |   ├── component-name.tsx      # Docs-specific react components
+  |   |   |   |   ├── component-name.tsx      # Specific react components
   |   |   |   |   |
-  |   |   |   |   ├── f-n-atoms.tsx           # Docs-specific react components
+  |   |   |   |   ├── f-n-atoms.tsx           # Specific Atom from Jotai
   |   |   |   |   |
-  |   |   |   |   ├── f-n-constants.tsx       # Docs-specific react components
+  |   |   |   |   ├── f-n-model.tsx           # Specific model
   |   |   |   |   |
-  |   |   |   |   ├── f-n-model.tsx           # Docs-specific react components
-  |   |   |   |   |
-  |   |   |   |   ├── f-n-queries.tsx         # Docs-specific react components
+  |   |   |   |   ├── f-n-queries.tsx         # Specific queries from react query
   |   |   |   |   |
   |   |   |   |   └── index.tsx               # Reexport React component from file-name.tsx
   |   |   |   |
   |   |   |   └── index.tsx                   # Reexport React component from file-name.tsx
   |   |   |
+  |   |   ├── general                        
+  |   |   |   └── index.tsx                   # Reexport React component from file-name.tsx
+  |   |   |
+  |   |   ├── layout                        
+  |   |   |   ├── stories                     # Docs layout react components
+  |   |   |   |   └── c-n.stories.tsx         # Docs-specific react components
+  |   |   |   └── index.tsx                   # Reexport React component from file-name.tsx
+  |   |   |
+  |   |   ├── pages                        
+  |   |   |   └── index.tsx                   # Reexport React component from file-name.tsx
+  |   |   |
   |   |   └── user-interfaces                 # Specific React, generic type and function utilities
+  |   |       └── index.tsx                   # Reexport React component from file-name.tsx
   |   |
   |   ├── docs                                # Pure documentation pages
   |   |   ├── component
@@ -58,7 +68,11 @@ The packages and apps source code in project strcuture seperti
   |   |   └── doc-name.docs.mdx               # Documentation page
   |   |
   |   ├── constants                           # Specific constants
+  |   |   └── index.tsx
+  |   |
+  │   ├── styles                              # Specific styles
   |   |
   │   └── utils                               # Specific React, generic type and function utilities
+  |       └── index.tsx                   
 
 ```
