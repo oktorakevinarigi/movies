@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 import { fadeIn } from "@/utils";
-import { IconStar } from "../../user-interfaces";
+import { IconStar } from "../../user-interfaces/icons";
 
 type CardProps = {
   index?: number;

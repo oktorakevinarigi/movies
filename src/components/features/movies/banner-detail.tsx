@@ -30,6 +30,7 @@ export function BannerDetail() {
           fill
           style={{ objectFit: "cover", objectPosition: "top" }}
           alt={getMovieDetail.data?.title || ""}
+          priority
         />
       </div>
       <SimpleBlock className="relative z-10 -mt-48 flex gap-10">
@@ -43,6 +44,7 @@ export function BannerDetail() {
           height={330}
           alt={getMovieDetail.data?.title || ""}
           className="rounded-xl"
+          priority
         />
         <div className="mt-10 space-y-3">
           <p className="text-3xl font-semibold text-white">{getMovieDetail.data?.title}</p>
