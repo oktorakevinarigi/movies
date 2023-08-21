@@ -10,7 +10,7 @@ export function HomeMobilePage() {
       </div>
       <div className="mb-10 flex flex-col gap-[18px] px-5">
         <TopRate />
-        <NowPlaying />
+        <NowPlaying isMobile />
       </div>
       <Footer />
 

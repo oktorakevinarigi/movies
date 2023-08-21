@@ -9,7 +9,7 @@ export function DetailPage(props: DetailPageProps) {
   const { id } = props;
   return (
     <>
-      <div className="sticky top-0 z-20 bg-[#1e1e1e] bg-opacity-80">
+      <div className="sticky top-0 z-20 bg-black bg-opacity-80">
         <Header isIcon />
       </div>
       <div className="bg-black">

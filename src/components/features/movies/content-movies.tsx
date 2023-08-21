@@ -29,7 +29,7 @@ export function ContentMovies() {
   }
 
   if (getMovieDiscover.isLoading || getMovieGenres.isLoading) {
-    return <CardSkeleton />;
+    return <CardSkeleton isMobile={false} />;
   }
 
   return (
@@ -41,6 +41,7 @@ export function ContentMovies() {
           .map(item => (
             <div key={item.id}>
               <Card
+                isMobile={false}
                 id={item.id}
                 urlImage={item.poster_path ? ULR_IMAGE + item.poster_path : ""}
                 genre={getGenre(item.genre_ids, getMovieGenres.data?.genres || [])}
@@ -55,7 +56,7 @@ export function ContentMovies() {
         {getMovieDiscover.isFetching ? (
           <div className="grid grid-cols-[repeat(auto-fill,minmax(205px,1fr))] gap-5">
             {Array.from(Array(4).keys()).map(key => (
-              <CardSkeleton key={key} />
+              <CardSkeleton key={key} isMobile={false} />
             ))}
           </div>
         ) : null}

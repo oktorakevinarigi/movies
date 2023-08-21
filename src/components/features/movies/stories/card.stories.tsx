@@ -15,13 +15,14 @@ const meta = {
 export default meta;
 type CardMoviesStory = StoryObj<typeof meta>;
 
-export const Default: CardMoviesStory = {
+export const Desktop: CardMoviesStory = {
   render: args => (
     <div className="w-[250px]">
       <Card {...args} />
     </div>
   ),
   args: {
+    isMobile: false,
     genre: "Action",
     id: 238,
     ratings: 8.7,
@@ -32,5 +33,17 @@ export const Default: CardMoviesStory = {
   play: async () => {
     const titleElement = await screen.findByText("The Godfather");
     expect(titleElement).toBeInTheDocument();
+  },
+};
+
+export const Mobile: CardMoviesStory = {
+  render: args => (
+    <div className="w-[155px]">
+      <Card {...args} />
+    </div>
+  ),
+  args: {
+    ...Desktop.args,
+    isMobile: true,
   },
 };

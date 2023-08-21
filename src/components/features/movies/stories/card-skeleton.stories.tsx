@@ -10,9 +10,12 @@ export default meta;
 type CardSkeletonStory = StoryObj<typeof meta>;
 
 export const Desktop: CardSkeletonStory = {
-  render: () => (
+  render: args => (
     <div className="w-[250px]">
-      <CardSkeleton />
+      <CardSkeleton {...args} />
     </div>
   ),
+  args: {
+    isMobile: false,
+  },
 };

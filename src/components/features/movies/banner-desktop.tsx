@@ -55,7 +55,9 @@ export function BannerMovieDesktop(props: BannerMovieDesktopProps) {
 
       {visible && movieVideos.length && (
         <Modal onClose={onClose} isOpen={visible}>
-          <YoutubeSection id={movieVideos.find(movie => movie.type === "Trailer")?.key || ""} />
+          <div className="w-auto rounded-md bg-gray-700 p-5">
+            <YoutubeSection id={movieVideos.find(movie => movie.type === "Trailer")?.key || ""} />
+          </div>
         </Modal>
       )}
     </>

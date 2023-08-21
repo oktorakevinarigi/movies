@@ -14,7 +14,7 @@ export function HomeDesktopPage() {
         </div>
         <div className="mb-10 flex flex-col gap-[18px] px-10">
           <TopRate />
-          <NowPlaying />
+          <NowPlaying isMobile={false} />
         </div>
         <Footer />
       </div>

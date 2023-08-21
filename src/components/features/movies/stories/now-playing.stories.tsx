@@ -15,4 +15,7 @@ export const Desktop: NowPlayingStory = {
       <NowPlaying {...args} />
     </div>
   ),
+  args: {
+    isMobile: false,
+  },
 };

@@ -34,6 +34,7 @@ export function Recommendation(props: RecommendationProps) {
         {getMovieRecommendations.data?.results.slice(0, 5).map((item, index) => (
           <div key={item.id}>
             <Card
+              isMobile={false}
               index={index}
               id={item.id}
               urlImage={item.poster_path ? ULR_IMAGE + item.poster_path : ""}

@@ -25,7 +25,7 @@ function Desktop() {
             </div>
             <div className="grid grid-cols-[repeat(auto-fill,minmax(205px,1fr))] gap-10">
               {Array.from(Array(4).keys()).map(key => (
-                <CardSkeleton key={key} />
+                <CardSkeleton isMobile={false} key={key} />
               ))}
             </div>
           </div>
@@ -57,7 +57,7 @@ function Mobile() {
             </div>
             <div className="grid grid-cols-[repeat(auto-fill,minmax(205px,1fr))] gap-10">
               {Array.from(Array(8).keys()).map(key => (
-                <CardSkeleton key={key} />
+                <CardSkeleton isMobile key={key} />
               ))}
             </div>
           </div>
