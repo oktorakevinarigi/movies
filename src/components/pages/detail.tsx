@@ -8,13 +8,15 @@ type DetailPageProps = {
 export function DetailPage(props: DetailPageProps) {
   const { id } = props;
   return (
-    <>
-      <BannerDetail />
-      <SimpleBlock>
+    <div className="bg-[#080B1A]">
+      <div className="mb-10">
+        <BannerDetail isMobile={false} id={id} />
+      </div>
+      <SimpleBlock className="flex flex-col gap-10">
         <Review />
         <Recommendation id={id} />
       </SimpleBlock>
       <Footer />
-    </>
+    </div>
   );
 }

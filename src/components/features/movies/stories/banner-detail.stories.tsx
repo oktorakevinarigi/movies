@@ -17,5 +17,6 @@ export const Desktop: BannerDetailStory = {
   ),
   args: {
     isMobile: false,
+    id: "569094",
   },
 };
