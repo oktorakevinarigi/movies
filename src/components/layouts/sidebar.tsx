@@ -14,7 +14,7 @@ export function Sidebar() {
   const pathName = usePathname();
 
   return (
-    <div className="min-h-screen w-[229px] bg-[#151515] p-6">
+    <div className="min-h-screen w-[229px] bg-black p-6">
       <Link href="/" className="mb-[52px] flex justify-center">
         <IconMovie width="100px" />
       </Link>

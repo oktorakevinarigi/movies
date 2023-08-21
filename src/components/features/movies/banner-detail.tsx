@@ -45,11 +45,12 @@ export function BannerDetail(props: BannerDetailProps) {
   return (
     <>
       <div className="relative h-screen">
-        <div className="absolute bottom-0 left-0 right-0 top-0 z-10 h-full bg-gradient-to-t from-[#080B1A] to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 top-0 z-10 h-full bg-gradient-to-t from-black to-transparent" />
         <Image
           src={
             getMovieDetail.data?.backdrop_path
-              ? "https://image.tmdb.org/t/p/original/" + getMovieDetail.data?.backdrop_path
+              ? "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/" +
+                getMovieDetail.data?.backdrop_path
               : "/images/no-images.jpg"
           }
           fill
@@ -79,7 +80,7 @@ export function BannerDetail(props: BannerDetailProps) {
             <MovieIcon width="20px" height="20px" /> Tailer
           </button>
         </div>
-        <div className="mt-10 flex-1 space-y-3">
+        <div className="mt-5 flex-1 space-y-3">
           <p className="text-3xl font-semibold text-white">{getMovieDetail.data?.title}</p>
           <div className="flex items-center gap-2 text-sm text-white">
             {getMovieDetail.data?.release_date ? (
