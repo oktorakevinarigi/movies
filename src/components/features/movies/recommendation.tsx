@@ -22,7 +22,7 @@ export function Recommendation(props: RecommendationProps) {
 
   return (
     <>
-      <p className="mb-9 text-sm font-semibold text-white">RECOMMENDATION MOVIES</p>
+      <p className="mb-3 text-2xl font-bold text-slate-100">Recommendations</p>
 
       <motion.div
         variants={{ hidden: {}, show: {} }}

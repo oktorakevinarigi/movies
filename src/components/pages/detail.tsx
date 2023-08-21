@@ -1,4 +1,4 @@
-import { Header, Footer, SimpleBlock } from "@/components/layouts";
+import { Footer, SimpleBlock } from "@/components/layouts";
 import { BannerDetail, Review, Recommendation } from "../features";
 
 type DetailPageProps = {
@@ -9,14 +9,9 @@ export function DetailPage(props: DetailPageProps) {
   const { id } = props;
   return (
     <>
-      <Header />
-      <div className="bg-white">
-        <BannerDetail />
-        <SimpleBlock className="py-11">
-          <Review />
-        </SimpleBlock>
-      </div>
-      <SimpleBlock className="my-[50px]">
+      <BannerDetail />
+      <SimpleBlock>
+        <Review />
         <Recommendation id={id} />
       </SimpleBlock>
       <Footer />
