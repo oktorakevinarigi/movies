@@ -1,3 +1,3 @@
 export { HomePage } from "./home";
-export { DetailPage } from "./detail";
+export { MovieDetailPage } from "./movie-detail";
 export { MoviesPage } from "./movies";

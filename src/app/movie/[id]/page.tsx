@@ -1,6 +1,7 @@
+import { headers } from "next/headers";
 import { dehydrate, Hydrate } from "@tanstack/react-query";
 import { getQueryClient } from "@/utils/query-client";
-import { fetchNode } from "@/utils";
+import { fetchNode, isMobileDevice } from "@/utils";
 import {
   getMovieDetail,
   MovieKeys,
@@ -11,12 +12,14 @@ import {
   MovieReviewsKeys,
   getMovieReviews,
 } from "@/components/features";
-import { DetailPage } from "@/components/pages";
+import { MovieDetailPage } from "@/components/pages";
 import { API_KEY } from "@/constants";
 
 export default async function Detail({ params }: { params: { id: string } }) {
   const fetch = fetchNode();
   const queryClient = getQueryClient();
+  const userAgent = headers().get("user-agent");
+  const isMobile = isMobileDevice(userAgent || "");
 
   const queryDetail = {
     api_key: API_KEY,
@@ -53,7 +56,7 @@ export default async function Detail({ params }: { params: { id: string } }) {
 
   return (
     <Hydrate state={dehydratedState}>
-      <DetailPage id={params.id} />
+      <MovieDetailPage isMobile={isMobile} id={params.id} />
     </Hydrate>
   );
 }

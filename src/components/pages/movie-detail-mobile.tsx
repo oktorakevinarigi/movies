@@ -1,11 +1,11 @@
 import { Header, Footer, SimpleBlock } from "@/components/layouts";
 import { BannerDetail, Review, Recommendation } from "../features";
 
-type DetailPageProps = {
+type MovieDetailPageMobileProps = {
   id: string;
 };
 
-export function DetailPage(props: DetailPageProps) {
+export function MovieDetailPageMobile(props: MovieDetailPageMobileProps) {
   const { id } = props;
   return (
     <>
@@ -14,7 +14,7 @@ export function DetailPage(props: DetailPageProps) {
       </div>
       <div className="bg-black">
         <div className="mb-10">
-          <BannerDetail isMobile={false} id={id} />
+          <BannerDetail isMobile id={id} />
         </div>
         <SimpleBlock className="flex flex-col gap-10">
           <Review />

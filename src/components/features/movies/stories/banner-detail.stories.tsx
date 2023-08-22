@@ -20,3 +20,15 @@ export const Desktop: BannerDetailStory = {
     id: "569094",
   },
 };
+
+export const Mobile: BannerDetailStory = {
+  render: args => (
+    <div className="w-[360px]">
+      <BannerDetail {...args} />
+    </div>
+  ),
+  args: {
+    ...Desktop.args,
+    isMobile: true,
+  },
+};
