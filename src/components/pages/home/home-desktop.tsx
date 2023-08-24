@@ -1,5 +1,5 @@
 import { Header, Footer, Sidebar } from "@/components/layouts";
-import { BannerMovie, TopRate, NowPlaying } from "../features";
+import { BannerMovie, TopRate, NowPlaying } from "../../features";
 
 export function HomeDesktopPage() {
   return (
@@ -16,7 +16,7 @@ export function HomeDesktopPage() {
           <TopRate />
           <NowPlaying isMobile={false} />
         </div>
-        <Footer />
+        <Footer isMobile={false} />
       </div>
     </>
   );

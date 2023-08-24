@@ -8,7 +8,7 @@ export function MoviesPageMobile() {
       <SimpleBlock className="py-14">
         <ListMovies />
       </SimpleBlock>
-      <Footer />
+      <Footer isMobile />
 
       <Navbar isMobile />
     </>

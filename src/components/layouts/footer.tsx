@@ -1,11 +1,15 @@
-import { IconMovieGray } from "@/components/user-interfaces";
+import { FooterDesktop } from "./footer-desktop";
+import { FooterMobile } from "./footer-mobile";
 
-export function Footer() {
-  return (
-    <div className="flex h-40 items-center justify-between bg-black/30 px-10 text-sm text-white">
-      <p>© 2023 MoovieTime. All rights reserved.</p>
-      <IconMovieGray />
-      <p>Made with NextJS</p>
-    </div>
-  );
+type FooterProps = {
+  isMobile: boolean;
+};
+
+export function Footer(props: FooterProps) {
+  const { isMobile } = props;
+
+  if (isMobile) {
+    return <FooterMobile />;
+  }
+  return <FooterDesktop />;
 }

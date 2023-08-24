@@ -8,7 +8,7 @@ export function MoviesPageDesktop() {
       <SimpleBlock className="py-14">
         <ListMovies />
       </SimpleBlock>
-      <Footer />
+      <Footer isMobile={false} />
     </>
   );
 }

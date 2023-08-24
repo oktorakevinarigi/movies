@@ -12,12 +12,12 @@ const gary = "text-[#707070]";
 export function NavbarMobile(props: NavbarMobileProps) {
   const { pathName } = props;
   return (
-    <div className="sticky bottom-0 z-10 flex h-20 w-full justify-between border-t border-white bg-[#242A32]">
-      <Link href="/" className="flex flex-1 flex-col items-center justify-center">
+    <div className="sticky bottom-0 z-10 flex h-16 w-full justify-between border-t border-white bg-[#242A32]">
+      <Link href="/" className="flex flex-1 flex-col items-center justify-center text-sm">
         <HomeIcon width="24px" height="24px" className={pathName === "/" ? white : gary} />
         <p className={cn("font-medium", pathName === "/" ? white : gary)}>Home</p>
       </Link>
-      <Link href="/movies" className="flex flex-1 flex-col items-center justify-center">
+      <Link href="/movies" className="flex flex-1 flex-col items-center justify-center text-sm">
         <MovieIcon width="24px" height="24px" className={pathName === "/movies" ? white : gary} />
         <p className={cn("font-medium", pathName === "/movies" ? white : gary)}>Movies</p>
       </Link>

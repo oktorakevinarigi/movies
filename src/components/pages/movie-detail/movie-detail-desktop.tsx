@@ -1,5 +1,5 @@
 import { Header, Footer, SimpleBlock } from "@/components/layouts";
-import { BannerDetail, Review, Recommendation } from "../features";
+import { BannerDetail, Review, Recommendation } from "../../features";
 
 type MovieDetailPageDesktopProps = {
   id: string;
@@ -21,7 +21,7 @@ export function MovieDetailPageDesktop(props: MovieDetailPageDesktopProps) {
           <Recommendation isMobile={false} id={id} />
         </SimpleBlock>
       </div>
-      <Footer />
+      <Footer isMobile={false} />
     </>
   );
 }
