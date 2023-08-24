@@ -11,11 +11,24 @@ type RecommendationStory = StoryObj<typeof meta>;
 
 export const Desktop: RecommendationStory = {
   render: args => (
-    <div className="w-[800px]">
+    <div className="w-[768px]">
       <Recommendation {...args} />
     </div>
   ),
   args: {
+    isMobile: false,
     id: "614479",
+  },
+};
+
+export const Mobile: RecommendationStory = {
+  render: args => (
+    <div className="w-[360px]">
+      <Recommendation {...args} />
+    </div>
+  ),
+  args: {
+    ...Desktop.args,
+    isMobile: true,
   },
 };

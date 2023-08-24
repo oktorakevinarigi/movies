@@ -13,12 +13,12 @@ export function MovieDetailPageMobile(props: MovieDetailPageMobileProps) {
         <Header isIcon />
       </div>
       <div className="bg-black">
-        <div className="mb-10">
+        <div className="mb-5">
           <BannerDetail isMobile id={id} />
         </div>
-        <SimpleBlock className="flex flex-col gap-10">
+        <SimpleBlock className="flex flex-col gap-10 pb-5">
           <Review />
-          <Recommendation id={id} />
+          <Recommendation isMobile id={id} />
         </SimpleBlock>
       </div>
       <Footer />

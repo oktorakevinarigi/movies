@@ -1,18 +1,16 @@
 "use client";
-import dayjs from "dayjs";
-import { motion } from "framer-motion";
-
-import { getGenre } from "@/utils";
-import { ULR_IMAGE, API_KEY } from "@/constants";
+import { API_KEY } from "@/constants";
 import { useGetMovieRecommendations, useGetMovieGenres } from "./movie-queries";
-import { Card } from "./card";
+import { RecommendationDesktop } from "./recommendation-desktop";
+import { RecommendationMobile } from "./recommendation-mobile";
 
 type RecommendationProps = {
+  isMobile: boolean;
   id: string;
 };
 
 export function Recommendation(props: RecommendationProps) {
-  const { id } = props;
+  const { isMobile, id } = props;
   const getMovieGenres = useGetMovieGenres({ api_key: API_KEY, language: "en" });
   const getMovieRecommendations = useGetMovieRecommendations({ api_key: API_KEY, movie_id: id });
 
@@ -20,32 +18,13 @@ export function Recommendation(props: RecommendationProps) {
     return null;
   }
 
-  return (
-    <>
-      <p className="mb-3 text-2xl font-bold text-slate-100">Recommendations</p>
+  const newProps = {
+    movieGenres: getMovieGenres.data?.genres || [],
+    movieRecommendations: getMovieRecommendations.data?.results || [],
+  };
 
-      <motion.div
-        variants={{ hidden: {}, show: {} }}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.25 }}
-        className="grid min-h-[70vh] grid-cols-[repeat(auto-fill,minmax(205px,1fr))] flex-col gap-5 lg:flex-row"
-      >
-        {getMovieRecommendations.data?.results.slice(0, 5).map((item, index) => (
-          <div key={item.id}>
-            <Card
-              isMobile={false}
-              index={index}
-              id={item.id}
-              urlImage={item.poster_path ? ULR_IMAGE + item.poster_path : ""}
-              title={item.title}
-              genre={getGenre(item.genre_ids, getMovieGenres.data?.genres || [])}
-              year={item.release_date ? dayjs(item.release_date).format("YYYY") : ""}
-              ratings={item.vote_average}
-            />
-          </div>
-        ))}
-      </motion.div>
-    </>
-  );
+  if (isMobile) {
+    return <RecommendationMobile {...newProps} />;
+  }
+  return <RecommendationDesktop {...newProps} />;
 }

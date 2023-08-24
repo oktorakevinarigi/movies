@@ -16,9 +16,9 @@ export function MovieDetailPageDesktop(props: MovieDetailPageDesktopProps) {
         <div className="mb-10">
           <BannerDetail isMobile={false} id={id} />
         </div>
-        <SimpleBlock className="flex flex-col gap-10">
+        <SimpleBlock className="flex flex-col gap-10 pb-10">
           <Review />
-          <Recommendation id={id} />
+          <Recommendation isMobile={false} id={id} />
         </SimpleBlock>
       </div>
       <Footer />

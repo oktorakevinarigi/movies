@@ -63,7 +63,7 @@ export function BannerDetailMobile(props: BannerDetailMobileProps) {
           priority
         />
         <button
-          className="flex h-10 w-full items-center justify-center gap-1 rounded-full bg-slate-700/50 text-sm text-slate-100"
+          className="flex h-8 w-full items-center justify-center gap-1 rounded-full bg-slate-700/50 text-sm text-slate-100"
           onClick={onWatch}
         >
           <MovieIcon width="18px" height="18px" /> Tailer
