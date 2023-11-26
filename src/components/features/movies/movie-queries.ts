@@ -6,7 +6,7 @@ import {
   type UseInfiniteQueryOptions,
 } from "@tanstack/react-query";
 
-import { FetcherArgs, cleanQuery, fetchBrowser, queryToString } from "@/utils";
+import { cleanQuery, queryToString, get } from "@/utils";
 import { URL_API } from "@/constants";
 import {
   movieResponseSchema,
@@ -17,6 +17,9 @@ import {
   movieReviewsResponseSchema,
   movieVideosResponseSchema,
 } from "./movie-model";
+
+type IUseQueryOptions<TData> = Omit<UseQueryOptions<TData>, "queryKey">;
+type IUseInfiniteQueryOptions<TData> = Omit<UseInfiniteQueryOptions<TData>, "queryKey" | "select">;
 
 type ApiKeyQuery = {
   api_key: string;
@@ -56,11 +59,11 @@ export const MoviePopularKeys = {
   lists: () => [...MoviePopularKeys.all, "LISTS"],
   list: (query: MovieQuery) => [...MoviePopularKeys.lists(), cleanQuery(query)],
 };
-export const MovieUpcomingKeys = {
-  all: ["MOVIE_UPCOMING"],
-  lists: () => [...MovieUpcomingKeys.all, "LISTS"],
-  list: (query: MovieQuery) => [...MovieUpcomingKeys.lists(), cleanQuery(query)],
-};
+// export const MovieUpcomingKeys = {
+//   all: ["MOVIE_UPCOMING"],
+//   lists: () => [...MovieUpcomingKeys.all, "LISTS"],
+//   list: (query: MovieQuery) => [...MovieUpcomingKeys.lists(), cleanQuery(query)],
+// };
 export const MovieNowPlayingKeys = {
   all: ["MOVIE_NOW_PLAYING"],
   lists: () => [...MovieNowPlayingKeys.all, "LISTS"],
@@ -112,47 +115,44 @@ export const MovieVideoKeys = {
   list: (query: MovieReviewsQuery) => [...MovieVideoKeys.lists(), cleanQuery(query)],
 };
 
-export const getMoviePopular = async ({ fetch, query }: FetcherArgs<MovieQuery>) => {
-  const response = await fetch.get(`${URL_API}/3/movie/popular${queryToString(query)}`, {
+export const getMoviePopular = async ({ query }: { query: MovieQuery }) => {
+  const response = await get(`${URL_API}/3/movie/popular${queryToString(query)}`, {
     next: { revalidate: 60 },
   });
   return movieResponseSchema.parse(response);
 };
 export type IMoviePopularFn = Awaited<ReturnType<typeof getMoviePopular>>;
-export function useGetMoviePopular(query: MovieQuery, options?: UseQueryOptions<IMoviePopularFn>) {
-  return useQuery<IMoviePopularFn>(
-    MoviePopularKeys.list(query),
-    () => {
-      const fetch = fetchBrowser();
-      return getMoviePopular({ fetch, query });
-    },
-    options,
-  );
-}
-
-export const getMovieUpcoming = async ({ fetch, query }: FetcherArgs<MovieQuery>) => {
-  const response = await fetch.get(`${URL_API}/3/movie/upcoming${queryToString(query)}`, {
-    next: { revalidate: 60 },
+export function useGetMoviePopular(query: MovieQuery, options?: IUseQueryOptions<IMoviePopularFn>) {
+  return useQuery<IMoviePopularFn>({
+    queryKey: MoviePopularKeys.list(query),
+    queryFn: async () => await getMoviePopular({ query }),
+    ...options,
   });
-  return movieResponseSchema.parse(response);
-};
-export type IMovieUpcomingFn = Awaited<ReturnType<typeof getMovieUpcoming>>;
-export function useGetMovieUpcoming(
-  query: MovieQuery,
-  options?: UseQueryOptions<IMovieUpcomingFn>,
-) {
-  return useQuery<IMovieUpcomingFn>(
-    MovieUpcomingKeys.list(query),
-    () => {
-      const fetch = fetchBrowser();
-      return getMovieUpcoming({ fetch, query });
-    },
-    options,
-  );
 }
 
-export const getMovieNowPlaying = async ({ fetch, query }: FetcherArgs<MovieQuery>) => {
-  const response = await fetch.get(`${URL_API}/3/movie/now_playing${queryToString(query)}`, {
+// export const getMovieUpcoming = async ({ fetch, query }: FetcherArgs<MovieQuery>) => {
+//   const response = await fetch.get(`${URL_API}/3/movie/upcoming${queryToString(query)}`, {
+//     next: { revalidate: 60 },
+//   });
+//   return movieResponseSchema.parse(response);
+// };
+// export type IMovieUpcomingFn = Awaited<ReturnType<typeof getMovieUpcoming>>;
+// export function useGetMovieUpcoming(
+//   query: MovieQuery,
+//   options?: UseQueryOptions<IMovieUpcomingFn>,
+// ) {
+//   return useQuery<IMovieUpcomingFn>(
+//     MovieUpcomingKeys.list(query),
+//     () => {
+//       const fetch = fetchBrowser();
+//       return getMovieUpcoming({ fetch, query });
+//     },
+//     options,
+//   );
+// }
+
+export const getMovieNowPlaying = async ({ query }: { query: MovieQuery }) => {
+  const response = await get(`${URL_API}/3/movie/now_playing${queryToString(query)}`, {
     next: { revalidate: 60 },
   });
   return movieResponseSchema.parse(response);
@@ -160,39 +160,33 @@ export const getMovieNowPlaying = async ({ fetch, query }: FetcherArgs<MovieQuer
 export type IMovieNowPlayingFn = Awaited<ReturnType<typeof getMovieNowPlaying>>;
 export function useGetMovieNowPlaying(
   query: MovieQuery,
-  options?: UseQueryOptions<IMovieNowPlayingFn>,
+  options?: IUseQueryOptions<IMovieNowPlayingFn>,
 ) {
-  return useQuery<IMovieNowPlayingFn>(
-    MovieNowPlayingKeys.list(query),
-    () => {
-      const fetch = fetchBrowser();
-      return getMovieNowPlaying({ fetch, query });
-    },
-    options,
-  );
+  return useQuery<IMovieNowPlayingFn>({
+    queryKey: MovieNowPlayingKeys.list(query),
+    queryFn: async () => await getMovieNowPlaying({ query }),
+    ...options,
+  });
 }
 
-export const getMovieTopRate = async ({ fetch, query }: FetcherArgs<MovieQuery>) => {
-  const response = await fetch.get(`${URL_API}/3/movie/top_rated${queryToString(query)}`, {
+export const getMovieTopRate = async ({ query }: { query: MovieQuery }) => {
+  const response = await get(`${URL_API}/3/movie/top_rated${queryToString(query)}`, {
     next: { revalidate: 60 },
   });
   return movieResponseSchema.parse(response);
 };
 export type IMovieTopRateFn = Awaited<ReturnType<typeof getMovieTopRate>>;
-export function useGetMovieTopRate(query: MovieQuery, options?: UseQueryOptions<IMovieTopRateFn>) {
-  return useQuery<IMovieTopRateFn>(
-    MovieTopRateKeys.list(query),
-    () => {
-      const fetch = fetchBrowser();
-      return getMovieTopRate({ fetch, query });
-    },
-    options,
-  );
+export function useGetMovieTopRate(query: MovieQuery, options?: IUseQueryOptions<IMovieTopRateFn>) {
+  return useQuery<IMovieTopRateFn>({
+    queryKey: MovieTopRateKeys.list(query),
+    queryFn: async () => await getMovieTopRate({ query }),
+    ...options,
+  });
 }
 
-export const getMovieDetail = async ({ fetch, query }: FetcherArgs<MovieDetailQuery>) => {
+export const getMovieDetail = async ({ query }: { query: MovieDetailQuery }) => {
   const { movie_id, ...rest } = query;
-  const response = await fetch.get(`${URL_API}/3/movie/${movie_id}${queryToString(rest)}`, {
+  const response = await get(`${URL_API}/3/movie/${movie_id}${queryToString(rest)}`, {
     next: { revalidate: 60 },
   });
   return movieDetailResponseSchema.parse(response);
@@ -200,39 +194,33 @@ export const getMovieDetail = async ({ fetch, query }: FetcherArgs<MovieDetailQu
 export type IMovieDetailFn = Awaited<ReturnType<typeof getMovieDetail>>;
 export function useGetMovieDetail(
   query: MovieDetailQuery,
-  options?: UseQueryOptions<IMovieDetailFn>,
+  options?: IUseQueryOptions<IMovieDetailFn>,
 ) {
-  return useQuery<IMovieDetailFn>(
-    MovieKeys.detail(query),
-    () => {
-      const fetch = fetchBrowser();
-      return getMovieDetail({ fetch, query });
-    },
-    options,
-  );
+  return useQuery<IMovieDetailFn>({
+    queryKey: MovieKeys.detail(query),
+    queryFn: async () => await getMovieDetail({ query }),
+    ...options,
+  });
 }
 
-export const getMovieSearch = async ({ fetch, query }: FetcherArgs<MovieSearchQuery>) => {
-  const response = await fetch.get(`${URL_API}/3/search/movie${queryToString(query)}`);
+export const getMovieSearch = async ({ query }: { query: MovieSearchQuery }) => {
+  const response = await get(`${URL_API}/3/search/movie${queryToString(query)}`);
   return movieSearchResponseSchema.parse(response);
 };
 export type IMovieSearchFn = Awaited<ReturnType<typeof getMovieSearch>>;
 export function useGetMovieSearch(
   query: MovieSearchQuery,
-  options?: UseQueryOptions<IMovieSearchFn>,
+  options?: IUseQueryOptions<IMovieSearchFn>,
 ) {
-  return useQuery<IMovieSearchFn>(
-    MovieKeys.search(query),
-    () => {
-      const fetch = fetchBrowser();
-      return getMovieSearch({ fetch, query });
-    },
-    options,
-  );
+  return useQuery<IMovieSearchFn>({
+    queryKey: MovieKeys.search(query),
+    queryFn: async () => await getMovieSearch({ query }),
+    ...options,
+  });
 }
 
-export const getMovieGenres = async ({ fetch, query }: FetcherArgs<MovieGenresQuery>) => {
-  const response = await fetch.get(`${URL_API}/3/genre/movie/list${queryToString(query)}`, {
+export const getMovieGenres = async ({ query }: { query: MovieGenresQuery }) => {
+  const response = await get(`${URL_API}/3/genre/movie/list${queryToString(query)}`, {
     next: { revalidate: 60 },
   });
   return movieGenresResponseSchema.parse(response);
@@ -240,24 +228,18 @@ export const getMovieGenres = async ({ fetch, query }: FetcherArgs<MovieGenresQu
 export type IMovieGenresFn = Awaited<ReturnType<typeof getMovieGenres>>;
 export function useGetMovieGenres(
   query: MovieGenresQuery,
-  options?: UseQueryOptions<IMovieGenresFn>,
+  options?: IUseQueryOptions<IMovieGenresFn>,
 ) {
-  return useQuery<IMovieGenresFn>(
-    MovieGenresKeys.list(query),
-    () => {
-      const fetch = fetchBrowser();
-      return getMovieGenres({ fetch, query });
-    },
-    options,
-  );
+  return useQuery<IMovieGenresFn>({
+    queryKey: MovieGenresKeys.list(query),
+    queryFn: async () => await getMovieGenres({ query }),
+    ...options,
+  });
 }
 
-export const getMovieRecommedations = async ({
-  fetch,
-  query,
-}: FetcherArgs<MovieRecomendationsQuery>) => {
+export const getMovieRecommedations = async ({ query }: { query: MovieRecomendationsQuery }) => {
   const { movie_id, ...rest } = query;
-  const response = await fetch.get(
+  const response = await get(
     `${URL_API}/3/movie/${movie_id}/recommendations${queryToString(rest)}`,
     {
       next: { revalidate: 60 },
@@ -268,21 +250,18 @@ export const getMovieRecommedations = async ({
 export type IMovieRecommedationsFn = Awaited<ReturnType<typeof getMovieRecommedations>>;
 export function useGetMovieRecommendations(
   query: MovieRecomendationsQuery,
-  options?: UseQueryOptions<IMovieRecommedationsFn>,
+  options?: IUseQueryOptions<IMovieRecommedationsFn>,
 ) {
-  return useQuery<IMovieRecommedationsFn>(
-    MovieRecommendationsKeys.list(query),
-    () => {
-      const fetch = fetchBrowser();
-      return getMovieRecommedations({ fetch, query });
-    },
-    options,
-  );
+  return useQuery<IMovieRecommedationsFn>({
+    queryKey: MovieRecommendationsKeys.list(query),
+    queryFn: async () => getMovieRecommedations({ query }),
+    ...options,
+  });
 }
 
-export const getMovieReviews = async ({ fetch, query }: FetcherArgs<MovieReviewsQuery>) => {
+export const getMovieReviews = async ({ query }: { query: MovieReviewsQuery }) => {
   const { movie_id, ...rest } = query;
-  const response = await fetch.get(`${URL_API}/3/movie/${movie_id}/reviews${queryToString(rest)}`, {
+  const response = await get(`${URL_API}/3/movie/${movie_id}/reviews${queryToString(rest)}`, {
     next: { revalidate: 60 },
   });
   return movieReviewsResponseSchema.parse(response);
@@ -290,58 +269,49 @@ export const getMovieReviews = async ({ fetch, query }: FetcherArgs<MovieReviews
 export type IMovieReviewsFn = Awaited<ReturnType<typeof getMovieReviews>>;
 export function useGetMovieReviews(
   query: MovieReviewsQuery,
-  options?: UseQueryOptions<IMovieReviewsFn>,
+  options?: IUseQueryOptions<IMovieReviewsFn>,
 ) {
-  return useQuery<IMovieReviewsFn>(
-    MovieReviewsKeys.list(query),
-    () => {
-      const fetch = fetchBrowser();
-      return getMovieReviews({ fetch, query });
-    },
-    options,
-  );
+  return useQuery<IMovieReviewsFn>({
+    queryKey: MovieReviewsKeys.list(query),
+    queryFn: async () => await getMovieReviews({ query }),
+    ...options,
+  });
 }
 
-export const getMovieDiscover = async ({ fetch, query }: FetcherArgs<MovieDiscoverQuery>) => {
-  const response = await fetch.get(`${URL_API}/3/discover/movie${queryToString(query)}`, {
+export const getMovieDiscover = async ({ query }: { query: MovieDiscoverQuery }) => {
+  const response = await get(`${URL_API}/3/discover/movie${queryToString(query)}`, {
     next: { revalidate: 60 },
   });
   return movieSearchResponseSchema.parse(response);
 };
 export type IMovieDiscoverFn = Awaited<ReturnType<typeof getMovieDiscover>>;
-
 export type InfiniteMovieDiscoverFn = InfiniteData<IMovieDiscoverFn>;
 export function useGetInfiniteMovieDiscover(
   query: MovieDiscoverQuery,
-  options?: UseInfiniteQueryOptions<IMovieDiscoverFn>,
+  options?: IUseInfiniteQueryOptions<IMovieDiscoverFn>,
 ) {
-  return useInfiniteQuery<IMovieDiscoverFn>(
-    MovieDiscoverKeys.infiniteList(query),
-    async ({ pageParam = query.page }) => {
-      const fetch = fetchBrowser();
-      return getMovieDiscover({
-        fetch,
-        query: { ...query, page: pageParam || "1" },
+  return useInfiniteQuery<IMovieDiscoverFn>({
+    queryKey: MovieDiscoverKeys.infiniteList(query),
+    queryFn: async ({ pageParam }) => {
+      return await getMovieDiscover({
+        query: { ...query, page: pageParam as string },
       });
     },
-    {
-      select: options?.select as unknown as (
-        data: InfiniteMovieDiscoverFn,
-      ) => InfiniteData<IMovieDiscoverFn>,
-      getNextPageParam: lastPage => {
-        if (lastPage.results.length < 20) {
-          return undefined;
-        }
-        return lastPage.page + 1;
-      },
-      ...options,
+    getNextPageParam: lastPage => {
+      if (lastPage.results.length < 20) {
+        return undefined;
+      }
+      return lastPage.page + 1;
     },
-  );
+    initialPageParam: "1",
+    staleTime: Infinity,
+    ...options,
+  });
 }
 
-export const getMovieVideos = async ({ fetch, query }: FetcherArgs<MovieReviewsQuery>) => {
+export const getMovieVideos = async ({ query }: { query: MovieVideoQuery }) => {
   const { movie_id, ...rest } = query;
-  const response = await fetch.get(`${URL_API}/3/movie/${movie_id}/videos${queryToString(rest)}`, {
+  const response = await get(`${URL_API}/3/movie/${movie_id}/videos${queryToString(rest)}`, {
     next: { revalidate: 60 },
   });
   return movieVideosResponseSchema.parse(response);
@@ -349,14 +319,11 @@ export const getMovieVideos = async ({ fetch, query }: FetcherArgs<MovieReviewsQ
 export type IMovieVideosFn = Awaited<ReturnType<typeof getMovieVideos>>;
 export function useGetMovieVideos(
   query: MovieVideoQuery,
-  options?: UseQueryOptions<IMovieVideosFn>,
+  options?: IUseQueryOptions<IMovieVideosFn>,
 ) {
-  return useQuery<IMovieVideosFn>(
-    MovieVideoKeys.list(query),
-    () => {
-      const fetch = fetchBrowser();
-      return getMovieVideos({ fetch, query });
-    },
-    options,
-  );
+  return useQuery<IMovieVideosFn>({
+    queryKey: MovieVideoKeys.list(query),
+    queryFn: async () => await getMovieVideos({ query }),
+    ...options,
+  });
 }

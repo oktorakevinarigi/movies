@@ -1,49 +1,10 @@
 import { headers } from "next/headers";
-import { dehydrate, Hydrate } from "@tanstack/react-query";
-import { getQueryClient } from "@/utils/query-client";
-import { fetchNode, isMobileDevice } from "@/utils";
 import { HomePage } from "@/components/pages";
-import {
-  getMoviePopular,
-  MoviePopularKeys,
-  getMovieGenres,
-  MovieGenresKeys,
-  getMovieNowPlaying,
-  MovieNowPlayingKeys,
-  getMovieTopRate,
-  MovieTopRateKeys,
-} from "@/components/features";
-import { API_KEY } from "@/constants";
+import { isMobileDevice } from "@/utils";
 
-export default async function Home() {
-  const fetch = fetchNode();
-  const queryClient = getQueryClient();
+export default function Home() {
   const userAgent = headers().get("user-agent");
   const isMobile = isMobileDevice(userAgent || "");
 
-  const queryGenre = { api_key: API_KEY, language: "en" };
-  const query = { api_key: API_KEY, language: "en-US", page: "1", region: "" };
-
-  await Promise.all([
-    queryClient.prefetchQuery(MoviePopularKeys.list(query), () =>
-      getMoviePopular({ query: query, fetch }),
-    ),
-    queryClient.prefetchQuery(MovieNowPlayingKeys.list(query), () =>
-      getMovieNowPlaying({ query: query, fetch }),
-    ),
-    queryClient.prefetchQuery(MovieTopRateKeys.list(query), () =>
-      getMovieTopRate({ query: query, fetch }),
-    ),
-    queryClient.prefetchQuery(MovieGenresKeys.list(queryGenre), () =>
-      getMovieGenres({ query: queryGenre, fetch }),
-    ),
-  ]);
-
-  const dehydratedState = dehydrate(queryClient);
-
-  return (
-    <Hydrate state={dehydratedState}>
-      <HomePage isMobile={isMobile} />
-    </Hydrate>
-  );
+  return <HomePage isMobile={isMobile} />;
 }

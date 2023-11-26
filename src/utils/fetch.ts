@@ -1,118 +1,64 @@
-export type ISource = "browser" | "server";
-export type IOthers = (
-  | {
-      responseType?: "json";
-    }
-  | {
-      responseType: "binary";
-      fileName: string;
-    }
-  | {
-      responseType: "blob";
-      blobConfig?: BlobPropertyBag;
-    }
-) & {
-  requestType?: "json" | "formData";
-  tokenName?: string;
-};
-export type IOptions = { others?: IOthers } & RequestInit;
+export type IType = "json" | "blob";
+export type IOptions = RequestInit & { type?: IType };
 
 const DEFAULT_HEADERS = { Accept: "application/json", "Content-Type": "application/json" };
 
-export function getBody(options?: IOptions) {
-  if (options && options.body) {
-    if (options.others && options.others.requestType === "json") {
-      return { body: JSON.stringify(options.body) };
-    } else {
-      return { body: options.body };
-    }
-  }
-}
-function getDefaultHeaders({ requestType }: Pick<IOthers, "requestType">) {
-  if (requestType === "json") {
-    return DEFAULT_HEADERS;
-  }
-}
-function getHeaders({ others, headers }: IOptions) {
-  return {
-    ...getDefaultHeaders({ requestType: others?.requestType || "json" }),
-    ...headers,
-  };
-}
-
-function verifyResponse(res: Response, result?: Record<string, unknown>) {
+async function handleResponse(res: Response, param?: { type?: IType }) {
+  const { type = "json" } = param || {};
   if (!res.ok) {
-    if (res.status === 404) {
-      throw { statusCode: 404, message: result?.message || "Unauthorized", ...result };
-    } else {
-      throw result
-        ? { statusCode: res.status, ...result }
-        : { statusCode: res.status, message: "Network response was not ok" };
-    }
+    throw await res.json();
   }
-}
-async function handleResponse(res: Response, others?: IOthers) {
-  if (others && others.responseType === "json") {
-    const result = (await res.json()) as Record<string, unknown>;
-    verifyResponse(res, result);
-    return result;
-  } else if (others && others.responseType === "blob") {
-    const result = await res.blob();
-    verifyResponse(res);
-    const createBlob = new Blob([result], others.blobConfig);
-    return URL.createObjectURL(createBlob);
-  } else if (others && others.responseType === "binary") {
+  if (type === "json") {
+    return await res.json();
+  } else if (type === "blob") {
     return await res.blob();
   }
+  return res;
 }
 
-function handleOptions(options?: IOptions) {
-  const { headers, others, ...rest } = (options as IOptions) || {};
-  return {
-    ...getBody(options),
-    headers: getHeaders({ headers, others }),
-    ...rest,
-  };
-}
-
-export async function getFetch(url: string, options?: IOptions) {
+export async function get(url: string, options?: IOptions) {
   const response = await fetch(url, {
+    headers: { ...DEFAULT_HEADERS, ...options?.headers },
+    ...options,
     method: "GET",
-    ...handleOptions(options),
   });
-  return await handleResponse(response, options?.others || { responseType: "json" });
+  return await handleResponse(response, options);
 }
 
-export async function postFetch(url: string, options?: IOptions) {
+export async function post(url: string, options?: IOptions) {
   const response = await fetch(url, {
+    headers: { ...DEFAULT_HEADERS, ...options?.headers },
+    ...options,
     method: "POST",
-    ...handleOptions(options),
   });
-  return await handleResponse(response, options?.others || { responseType: "json" });
+  return await handleResponse(response, options);
 }
 
-export async function putFetch(url: string, options?: IOptions) {
+export async function put(url: string, options?: IOptions) {
   const response = await fetch(url, {
+    headers: { ...DEFAULT_HEADERS, ...options?.headers },
+    ...options,
     method: "PUT",
-    ...handleOptions(options),
   });
-  return await handleResponse(response, options?.others || { responseType: "json" });
+  return await handleResponse(response, options);
 }
 
-export async function deleteFetch(url: string, options?: IOptions) {
+export async function _delete(url: string, options?: IOptions) {
   const response = await fetch(url, {
+    headers: { ...DEFAULT_HEADERS, ...options?.headers },
+    ...options,
     method: "DELETE",
-    ...handleOptions(options),
   });
-  return await handleResponse(response, options?.others || { responseType: "json" });
+  return await handleResponse(response, options);
 }
 
-export async function patchFetch(url: string, options?: IOptions) {
+export async function patch(url: string, options?: IOptions) {
   const response = await fetch(url, {
+    headers: { ...DEFAULT_HEADERS, ...options?.headers },
+    ...options,
     method: "PATCH",
-    ...handleOptions(options),
   });
-  return await handleResponse(response, options?.others || { responseType: "json" });
+  return await handleResponse(response, options);
 }
 
 export type IQuery = Record<string, string | string[] | number | boolean | null | undefined>;

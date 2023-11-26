@@ -13,16 +13,13 @@ export function ContentMovies() {
   const sort = searchParams.get("sort");
 
   const getMovieGenres = useGetMovieGenres({ api_key: API_KEY, language: "en" });
-  const getMovieDiscover = useGetInfiniteMovieDiscover(
-    {
-      api_key: API_KEY,
-      language: "",
-      page: "1",
-      sort_by: sort || "",
-      with_genres: genre || "",
-    },
-    { keepPreviousData: true, staleTime: Infinity },
-  );
+  const getMovieDiscover = useGetInfiniteMovieDiscover({
+    api_key: API_KEY,
+    language: "",
+    page: "1",
+    sort_by: sort || "",
+    with_genres: genre || "",
+  });
 
   function onLoadMore() {
     getMovieDiscover.fetchNextPage();

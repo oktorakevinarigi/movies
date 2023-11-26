@@ -3,9 +3,6 @@ import type { Preview } from "@storybook/react";
 import { initialize, mswLoader } from "msw-storybook-addon";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { withTests } from "@storybook/addon-jest";
-
-import results from "../.jest-test-results.json";
 import "../src/app/globals.css";
 
 // Initialize MSW
@@ -16,9 +13,7 @@ initialize({
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 0,
-      cacheTime: 0,
-      retry: false,
+      staleTime: 5 * 1000,
     },
   },
 });
@@ -43,10 +38,9 @@ const preview: Preview = {
     Story => (
       <QueryClientProvider client={queryClient}>
         <Story />
-        <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
-    ),
-    withTests({ results }),
+    )
   ],
 };
 

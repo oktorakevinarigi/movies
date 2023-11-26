@@ -1,4 +1,3 @@
-import { cache } from "react";
 import { QueryClient, QueryCache, MutationCache } from "@tanstack/react-query";
 import { z } from "zod";
 
@@ -26,4 +25,4 @@ export const queryClientOptions = {
   }),
 };
 
-export const getQueryClient = cache(() => new QueryClient(queryClientOptions));
+export const getQueryClient = () => new QueryClient(queryClientOptions);

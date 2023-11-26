@@ -9,7 +9,6 @@ const meta = {
     msw: {
       handlers: [getPopularFake, getGenresFake, getVideosFake],
     },
-    jest: ["banner.test.tsx"],
   },
 } satisfies Meta<typeof BannerMovie>;
 

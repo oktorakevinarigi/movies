@@ -5,12 +5,11 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:import/recommended",
     "plugin:sonarjs/recommended",
+    "plugin:@tanstack/eslint-plugin-query/recommended",
     "prettier",
-    "plugin:storybook/recommended",
-    "plugin:testing-library/react",
-    "plugin:jest-dom/recommended"
+    "plugin:storybook/recommended"
   ],
-  "plugins": ["sonarjs", "prettier"],
+  "plugins": ["@typescript-eslint", "@tanstack/query", "sonarjs", "prettier"],
   "rules": {
     "react/no-array-index-key": "error",
     "@typescript-eslint/no-unused-vars": "error",
@@ -28,7 +27,6 @@
         "children": "never"
       }
     ],
-    "prettier/prettier": ["error"],
     "import/order": [
       "error",
       {
@@ -43,9 +41,7 @@
           "type"
         ]
       }
-    ]
-  },
-  "settings": {
-    "import/ignore": ["@tanstack/react-query", "@testing-library/react"]
+    ],
+    "prettier/prettier": ["error"]
   }
 }

@@ -1,28 +1,18 @@
 "use client";
-import React, { ReactNode } from "react";
-import {
-  QueryClient,
-  QueryClientProvider,
-  Hydrate,
-  type HydrateProps,
-} from "@tanstack/react-query";
+
+import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import React from "react";
+import { ReactQueryStreamedHydration } from "@tanstack/react-query-next-experimental";
+import { getQueryClient } from "./query-client";
 
-import { queryClientOptions } from "./query-client";
-
-type ProvidersProps = { children: ReactNode };
-
-export function Providers(props: ProvidersProps) {
-  const [queryClient] = React.useState(() => new QueryClient(queryClientOptions));
+export function Providers(props: { children: React.ReactNode }) {
+  const [queryClient] = React.useState(getQueryClient);
 
   return (
     <QueryClientProvider client={queryClient}>
-      {props.children}
-      <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+      <ReactQueryStreamedHydration>{props.children}</ReactQueryStreamedHydration>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }
-
-export const ReactQueryHydrate = (props: HydrateProps) => {
-  return <Hydrate {...props} />;
-};
