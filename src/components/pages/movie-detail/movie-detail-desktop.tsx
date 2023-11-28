@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Header, Footer, SimpleBlock } from "@/components/layouts";
 import { BannerDetail, Review, Recommendation } from "../../features";
 
@@ -14,11 +15,17 @@ export function MovieDetailPageDesktop(props: MovieDetailPageDesktopProps) {
       </div>
       <div className="bg-black">
         <div className="mb-10">
-          <BannerDetail isMobile={false} id={id} />
+          <Suspense fallback={<div className="text-white">Loading</div>}>
+            <BannerDetail isMobile={false} id={id} />
+          </Suspense>
         </div>
         <SimpleBlock className="flex flex-col gap-10 pb-10">
-          <Review />
-          <Recommendation isMobile={false} id={id} />
+          <Suspense fallback={<div className="text-white">Loading</div>}>
+            <Review />
+          </Suspense>
+          <Suspense fallback={<div className="text-white">Loading</div>}>
+            <Recommendation isMobile={false} id={id} />
+          </Suspense>
         </SimpleBlock>
       </div>
       <Footer isMobile={false} />

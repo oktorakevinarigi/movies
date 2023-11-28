@@ -1,9 +1,11 @@
 import {
   useQuery,
-  useInfiniteQuery,
+  useSuspenseQuery,
+  useSuspenseInfiniteQuery,
   type UseQueryOptions,
   type InfiniteData,
-  type UseInfiniteQueryOptions,
+  type UseSuspenseQueryOptions,
+  type UseSuspenseInfiniteQueryOptions,
 } from "@tanstack/react-query";
 
 import { cleanQuery, queryToString, get } from "@/utils";
@@ -19,7 +21,10 @@ import {
 } from "./movie-model";
 
 type IUseQueryOptions<TData> = Omit<UseQueryOptions<TData>, "queryKey">;
-type IUseInfiniteQueryOptions<TData> = Omit<UseInfiniteQueryOptions<TData>, "queryKey" | "select">;
+type IUseSuspenseInfiniteQueryOptions<TData> = Omit<
+  UseSuspenseInfiniteQueryOptions<TData>,
+  "queryKey" | "select"
+>;
 
 type ApiKeyQuery = {
   api_key: string;
@@ -122,8 +127,11 @@ export const getMoviePopular = async ({ query }: { query: MovieQuery }) => {
   return movieResponseSchema.parse(response);
 };
 export type IMoviePopularFn = Awaited<ReturnType<typeof getMoviePopular>>;
-export function useGetMoviePopular(query: MovieQuery, options?: IUseQueryOptions<IMoviePopularFn>) {
-  return useQuery<IMoviePopularFn>({
+export function useGetMoviePopular(
+  query: MovieQuery,
+  options?: UseSuspenseQueryOptions<IMoviePopularFn>,
+) {
+  return useSuspenseQuery<IMoviePopularFn>({
     queryKey: MoviePopularKeys.list(query),
     queryFn: async () => await getMoviePopular({ query }),
     ...options,
@@ -160,9 +168,9 @@ export const getMovieNowPlaying = async ({ query }: { query: MovieQuery }) => {
 export type IMovieNowPlayingFn = Awaited<ReturnType<typeof getMovieNowPlaying>>;
 export function useGetMovieNowPlaying(
   query: MovieQuery,
-  options?: IUseQueryOptions<IMovieNowPlayingFn>,
+  options?: UseSuspenseQueryOptions<IMovieNowPlayingFn>,
 ) {
-  return useQuery<IMovieNowPlayingFn>({
+  return useSuspenseQuery<IMovieNowPlayingFn>({
     queryKey: MovieNowPlayingKeys.list(query),
     queryFn: async () => await getMovieNowPlaying({ query }),
     ...options,
@@ -176,8 +184,11 @@ export const getMovieTopRate = async ({ query }: { query: MovieQuery }) => {
   return movieResponseSchema.parse(response);
 };
 export type IMovieTopRateFn = Awaited<ReturnType<typeof getMovieTopRate>>;
-export function useGetMovieTopRate(query: MovieQuery, options?: IUseQueryOptions<IMovieTopRateFn>) {
-  return useQuery<IMovieTopRateFn>({
+export function useGetMovieTopRate(
+  query: MovieQuery,
+  options?: UseSuspenseQueryOptions<IMovieTopRateFn>,
+) {
+  return useSuspenseQuery<IMovieTopRateFn>({
     queryKey: MovieTopRateKeys.list(query),
     queryFn: async () => await getMovieTopRate({ query }),
     ...options,
@@ -194,9 +205,9 @@ export const getMovieDetail = async ({ query }: { query: MovieDetailQuery }) => 
 export type IMovieDetailFn = Awaited<ReturnType<typeof getMovieDetail>>;
 export function useGetMovieDetail(
   query: MovieDetailQuery,
-  options?: IUseQueryOptions<IMovieDetailFn>,
+  options?: UseSuspenseQueryOptions<IMovieDetailFn>,
 ) {
-  return useQuery<IMovieDetailFn>({
+  return useSuspenseQuery<IMovieDetailFn>({
     queryKey: MovieKeys.detail(query),
     queryFn: async () => await getMovieDetail({ query }),
     ...options,
@@ -228,11 +239,13 @@ export const getMovieGenres = async ({ query }: { query: MovieGenresQuery }) => 
 export type IMovieGenresFn = Awaited<ReturnType<typeof getMovieGenres>>;
 export function useGetMovieGenres(
   query: MovieGenresQuery,
-  options?: IUseQueryOptions<IMovieGenresFn>,
+  options?: UseSuspenseQueryOptions<IMovieGenresFn>,
 ) {
-  return useQuery<IMovieGenresFn>({
+  return useSuspenseQuery<IMovieGenresFn>({
     queryKey: MovieGenresKeys.list(query),
-    queryFn: async () => await getMovieGenres({ query }),
+    queryFn: async () => {
+      return await getMovieGenres({ query });
+    },
     ...options,
   });
 }
@@ -250,9 +263,9 @@ export const getMovieRecommedations = async ({ query }: { query: MovieRecomendat
 export type IMovieRecommedationsFn = Awaited<ReturnType<typeof getMovieRecommedations>>;
 export function useGetMovieRecommendations(
   query: MovieRecomendationsQuery,
-  options?: IUseQueryOptions<IMovieRecommedationsFn>,
+  options?: UseSuspenseQueryOptions<IMovieRecommedationsFn>,
 ) {
-  return useQuery<IMovieRecommedationsFn>({
+  return useSuspenseQuery<IMovieRecommedationsFn>({
     queryKey: MovieRecommendationsKeys.list(query),
     queryFn: async () => getMovieRecommedations({ query }),
     ...options,
@@ -269,9 +282,9 @@ export const getMovieReviews = async ({ query }: { query: MovieReviewsQuery }) =
 export type IMovieReviewsFn = Awaited<ReturnType<typeof getMovieReviews>>;
 export function useGetMovieReviews(
   query: MovieReviewsQuery,
-  options?: IUseQueryOptions<IMovieReviewsFn>,
+  options?: UseSuspenseQueryOptions<IMovieReviewsFn>,
 ) {
-  return useQuery<IMovieReviewsFn>({
+  return useSuspenseQuery<IMovieReviewsFn>({
     queryKey: MovieReviewsKeys.list(query),
     queryFn: async () => await getMovieReviews({ query }),
     ...options,
@@ -288,9 +301,9 @@ export type IMovieDiscoverFn = Awaited<ReturnType<typeof getMovieDiscover>>;
 export type InfiniteMovieDiscoverFn = InfiniteData<IMovieDiscoverFn>;
 export function useGetInfiniteMovieDiscover(
   query: MovieDiscoverQuery,
-  options?: IUseInfiniteQueryOptions<IMovieDiscoverFn>,
+  options?: IUseSuspenseInfiniteQueryOptions<IMovieDiscoverFn>,
 ) {
-  return useInfiniteQuery<IMovieDiscoverFn>({
+  return useSuspenseInfiniteQuery<IMovieDiscoverFn>({
     queryKey: MovieDiscoverKeys.infiniteList(query),
     queryFn: async ({ pageParam }) => {
       return await getMovieDiscover({

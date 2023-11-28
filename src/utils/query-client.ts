@@ -4,7 +4,7 @@ import { z } from "zod";
 import { SwalError } from "./sweetalert";
 
 export const queryClientOptions = {
-  defaultOptions: { queries: { retry: false } },
+  defaultOptions: { queries: { retry: false, staleTime: 5 * 1000 } },
   queryCache: new QueryCache({
     onError: error => {
       let message;
